@@ -1,3 +1,4 @@
+
 <!--
   ╔═══════════════════════════════════════════════════════════╗
   ║          CARBON × KARAN — Personal Life OS v7            ║
@@ -4256,10 +4257,29 @@ function scheduleNotifs(){
 // ── UI CLICK SOUNDS (Web Audio, no files) ──
 // Different feel for different buttons - subtle, satisfying, not irritating
 let _uiAC=null;
+// iOS requires AudioContext to be created AND resumed inside a user gesture
+// We unlock it on the very first touch anywhere on screen
+function _unlockAudio(){
+  try{
+    if(!_uiAC){_uiAC=new(window.AudioContext||window.webkitAudioContext)();}
+    if(_uiAC.state==='suspended')_uiAC.resume();
+    // Play a silent buffer to fully unlock iOS audio
+    const buf=_uiAC.createBuffer(1,1,22050);
+    const src=_uiAC.createBufferSource();
+    src.buffer=buf;src.connect(_uiAC.destination);src.start(0);
+  }catch(e){}
+  document.removeEventListener('touchstart',_unlockAudio);
+  document.removeEventListener('touchend',_unlockAudio);
+  document.removeEventListener('click',_unlockAudio);
+}
+document.addEventListener('touchstart',_unlockAudio,{passive:true});
+document.addEventListener('touchend',_unlockAudio,{passive:true});
+document.addEventListener('click',_unlockAudio,{passive:true});
+
 function _uiSound(type){
   try{
     if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
-    if(_uiAC.state==='suspended')_uiAC.resume();
+    if(_uiAC.state==='suspended'){_uiAC.resume().then(()=>_uiSound(type));return;}
     const now=_uiAC.currentTime;
     const sounds={
       // Nav tap - soft low thud like iPhone home button feel
@@ -4315,19 +4335,30 @@ function _uiSound(type){
   }catch(e){}
 }
 function _attachNavSounds(){
-  // Use event delegation — works on ALL buttons including dynamically rendered ones
-  document.addEventListener('click',function(e){
+  // Single handler catches ALL taps everywhere including dynamic pages
+  function _handleSound(e){
     const t=e.target;
-    // Find closest button/clickable
-    const btn=t.closest('.mni-b,.mni,.ni,.btn-a,.btn-g,.btn-r,.btn,.qi,.lf-btn,.lf-tr,.tab');
+    if(!t)return;
+    // Walk up the DOM to find the clickable element
+    const btn=t.closest('button,.mni-b,.mni,.ni,.btn-a,.btn-g,.btn-r,.btn,.qi,.lf-btn,.lf-tr,.tab,.mm-item,.thsw,.pnk,.lf-play,.abtn,.eb,.cb,.tb');
     if(!btn)return;
-    if(btn.matches('.mni-b'))return _uiSound('nav');
-    if(btn.matches('.ni'))return _uiSound('sidebar');
-    if(btn.matches('.btn-a,.btn-g'))return _uiSound('action');
-    if(btn.matches('.btn-r'))return _uiSound('danger');
+    // Pick sound based on what was tapped
+    if(btn.matches('.mni-b,.mni'))return _uiSound('nav');
+    if(btn.matches('.ni,.mm-item'))return _uiSound('sidebar');
+    if(btn.matches('.btn-r,.abtn.r'))return _uiSound('danger');
+    if(btn.matches('.btn-a,.btn-g,.lf-play'))return _uiSound('action');
     if(btn.matches('.qi'))return _uiSound('quest');
-    if(btn.matches('.lf-btn,.lf-tr'))return _uiSound('action');
-    if(btn.matches('.tab,.btn'))return _uiSound('nav');
+    if(btn.matches('.pnk'))return _uiSound('nav');
+    // Everything else — generic soft tap
+    return _uiSound('nav');
+  }
+  document.addEventListener('click',_handleSound,{passive:true});
+  // Also on touchend for faster response on iPhone
+  document.addEventListener('touchend',function(e){
+    // Only fire if it was a tap (not a scroll)
+    if(e.changedTouches&&e.changedTouches.length===1){
+      _handleSound({target:e.target});
+    }
   },{passive:true});
 }
 setTimeout(_attachNavSounds,600);
