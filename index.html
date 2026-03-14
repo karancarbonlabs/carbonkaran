@@ -1,3 +1,15 @@
+<!--
+  ╔═══════════════════════════════════════════════════════════╗
+  ║          CARBON × KARAN — Personal Life OS v7            ║
+  ║                                                           ║
+  ║  Built for: Karan Singh | KIT AIML | Kanpur, UP          ║
+  ║  © 2026 Karan Singh. All rights reserved.                ║
+  ║                                                           ║
+  ║  This software is personal property of Karan Singh.      ║
+  ║  Unauthorized use, copying or distribution is            ║
+  ║  strictly prohibited.                                     ║
+  ╚═══════════════════════════════════════════════════════════╝
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1873,7 +1885,24 @@ function delCQ(id){D.customQuests=(D.customQuests||[]).filter(q=>q.id!==id);save
 
 // ── CLOCK ──
 const SCHED_ITEMS=[{t:'05:30',n:'🌅 Wake Up'},{t:'06:00',n:'💪 Workout'},{t:'07:00',n:'🇪🇸 Spanish'},{t:'07:30',n:'🍳 Breakfast'},{t:'09:00',n:'🎓 College'},{t:'13:00',n:'🍱 Lunch'},{t:'14:00',n:'♟ Chess'},{t:'14:30',n:'📦 10 DMs'},{t:'16:00',n:'🧪 Study AI'},{t:'17:30',n:'📖 Vocab'},{t:'18:00',n:'🎸 Guitar'},{t:'19:00',n:'🍽 Dinner'},{t:'20:00',n:'✍ Review'},{t:'21:00',n:'🌬 Breathing'},{t:'22:00',n:'📚 Read'},{t:'22:30',n:'📵 Phone Away'},{t:'23:00',n:'🛏 Sleep'}];
-function tickClock(){const now=new Date();const h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();const setR=(id,deg)=>{const e=document.getElementById(id);if(e)e.style.transform=`rotate(${deg}deg)`;};setR('hand-h',(h%12)*30+m*.5);setR('hand-m',m*6+s*.1);setR('hand-s',s*6);setTxt('clock-digi',String(h).padStart(2,'0')+':'+String(m).padStart(2,'0'));const curMins=h*60+m;const next=SCHED_ITEMS.find(x=>{const[sh,sm]=x.t.split(':').map(Number);return sh*60+sm>curMins;});if(next){const[sh,sm]=next.t.split(':').map(Number);const diff=(sh*60+sm)-curMins;setTxt('next-event',next.n);setTxt('sleep-countdown','In '+(diff>=60?Math.floor(diff/60)+'h ':'')+diff%60+'m');}else{setTxt('next-event','🛏 Sleep time!');setTxt('sleep-countdown','Rest up, you earned it');}}
+function tickClock(){const now=new Date();const h=now.getHours(),m=now.getMinutes(),s=now.getSeconds();
+// Auto midnight reset — if date changed while app was open
+const todayNow=now.toISOString().slice(0,10);
+if(window._lastTickDate && window._lastTickDate!==todayNow){
+  // Date just changed — trigger daily reset
+  D.questsDoneByDate=D.questsDoneByDate||{};
+  D.water=D.water||{};
+  D.weeklyXP=D.weeklyXP||{};
+  D.questsDoneByDate[todayNow]=[];
+  D.water[todayNow]=0;
+  D.weeklyXP[todayNow]=0;
+  D.lastActive=todayNow;
+  save();updateTopBar();
+  if(typeof renderDash==='function')renderDash();
+  toast('🌅 New day! Quests reset. Let\'s go Karan ⚡');
+}
+window._lastTickDate=todayNow;
+const setR=(id,deg)=>{const e=document.getElementById(id);if(e)e.style.transform=`rotate(${deg}deg)`;};setR('hand-h',(h%12)*30+m*.5);setR('hand-m',m*6+s*.1);setR('hand-s',s*6);setTxt('clock-digi',String(h).padStart(2,'0')+':'+String(m).padStart(2,'0'));const curMins=h*60+m;const next=SCHED_ITEMS.find(x=>{const[sh,sm]=x.t.split(':').map(Number);return sh*60+sm>curMins;});if(next){const[sh,sm]=next.t.split(':').map(Number);const diff=(sh*60+sm)-curMins;setTxt('next-event',next.n);setTxt('sleep-countdown','In '+(diff>=60?Math.floor(diff/60)+'h ':'')+diff%60+'m');}else{setTxt('next-event','🛏 Sleep time!');setTxt('sleep-countdown','Rest up, you earned it');}}
 
 // ── SCHEDULE ──
 const SCHED_FULL=[{t:'05:30',n:'🌅 Wake Up',a:'Before 6 AM'},{t:'06:00',n:'💪 Workout',a:'Body recomp'},{t:'07:00',n:'🇪🇸 Spanish',a:'30 min Airlearn'},{t:'07:30',n:'🍳 Breakfast',a:'Eat clean'},{t:'09:00',n:'🎓 College KIT',a:'AIML classes'},{t:'13:00',n:'🍱 Lunch',a:'Eat clean'},{t:'14:00',n:'♟ Chess',a:'Puzzles + tactics'},{t:'14:30',n:'📦 10 DMs',a:'Cold outreach'},{t:'16:00',n:'🧪 Study AI',a:'1.5h deep work'},{t:'17:30',n:'📖 Vocab',a:'7 words'},{t:'18:00',n:'🎸 Guitar',a:'Creative time'},{t:'19:00',n:'🍽 Dinner',a:'Family time'},{t:'20:00',n:'✍ Review + Wins',a:'Reflect'},{t:'21:00',n:'🌬 Breathing + Journal',a:'Wind down'},{t:'22:00',n:'📚 Read',a:'20 min'},{t:'22:30',n:'📵 Phone Away',a:'SQ done ✓'},{t:'23:00',n:'🛏 Sleep',a:'7 hours'}];
@@ -3626,7 +3655,21 @@ function connectFirebase(wasReset){
     const cfg=JSON.parse(cfgEl.value.trim());
     if(!cfg.databaseURL){toast('Config needs databaseURL field');return;}
     D.firebaseConfig=cfg;save();
-    if(typeof firebase==='undefined'){toast('Firebase SDK loading error. Refresh and try.');return;}
+    if(typeof firebase==='undefined'){
+      // SDK not ready yet - retry up to 5 times with 1s delay
+      let _fbRetry=0;
+      const _fbWait=setInterval(()=>{
+        _fbRetry++;
+        if(typeof firebase!=='undefined'){
+          clearInterval(_fbWait);
+          connectFirebase(wasReset);
+        } else if(_fbRetry>=8){
+          clearInterval(_fbWait);
+          toast('No internet connection. Data saved locally.');
+        }
+      },1000);
+      return;
+    }
     try{
       const existing=firebase.apps.find(a=>a.name==='ck_app');
       firebaseApp2=existing||firebase.initializeApp(cfg,'ck_app');
@@ -3638,6 +3681,17 @@ function connectFirebase(wasReset){
       if(remote&&typeof remote==='object'){
         if((remote.totalXP||0)>(D.totalXP||0)){
           D=Object.assign({},DEFAULT,remote);
+          // Re-apply daily reset after Firebase merge
+          const todayMerge=getToday();
+          if(D.lastActive&&D.lastActive!==todayMerge){
+            D.questsDoneByDate=D.questsDoneByDate||{};
+            D.water=D.water||{};
+            D.weeklyXP=D.weeklyXP||{};
+            D.questsDoneByDate[todayMerge]=[];
+            D.water[todayMerge]=0;
+            D.weeklyXP[todayMerge]=0;
+            D.lastActive=todayMerge;
+          }
           try{localStorage.setItem('ck_v7',JSON.stringify(D));}catch(e){}
           updateTopBar();renderPage(currentPage);
           try{localStorage.setItem('ck_fb_cfg',JSON.stringify(cfg));}catch(e){}
@@ -3652,8 +3706,22 @@ function connectFirebase(wasReset){
         const rd=snap.val();
         if(rd&&typeof rd==='object'&&(rd.totalXP||0)>(D.totalXP||0)){
           D=Object.assign({},DEFAULT,rd);
+          // CRITICAL: After Firebase merge, re-apply daily reset
+          // Firebase has yesterday's quests - must clear them for today
+          const todayNow=getToday();
+          if(D.lastActive && D.lastActive!==todayNow){
+            D.questsDoneByDate=D.questsDoneByDate||{};
+            D.water=D.water||{};
+            D.weeklyXP=D.weeklyXP||{};
+            D.questsDoneByDate[todayNow]=[];
+            D.water[todayNow]=0;
+            D.weeklyXP[todayNow]=0;
+            D.lastActive=todayNow;
+          }
           try{localStorage.setItem('ck_v7',JSON.stringify(D));}catch(e){}
           updateTopBar();
+          if(typeof renderDash==='function'&&currentPage==='dash')renderDash();
+          if(typeof renderQuests==='function'&&currentPage==='quests')renderQuests();
         }
       });
     }).catch(e=>toast('Firebase error: '+e.message));
@@ -4149,22 +4217,23 @@ function init(){
   if(D.battleActive)startBattleTimer();
   // Restore lofi UI
   updateLofiUI();
-  // Firebase reconnect if config saved
-  if(D.firebaseConfig){
-    setTimeout(()=>{
-      const fc=document.getElementById('firebase-config');
-      if(fc)fc.value=JSON.stringify(D.firebaseConfig,null,2);
-      // Check if this is a fresh start (localStorage was cleared)
-      const wasReset=!localStorage.getItem('ck_v7');
-      connectFirebase(wasReset);
-    },1500);
-  }
+  // AUTO-CONNECT Firebase on every device, every load — no manual paste needed
+  const _HARDCODED_FB={'apiKey':'AIzaSyDTZAiztxzccJRxBcvsCJWvo0E12Q6s7yI','authDomain':'carbonkaran-ee997.firebaseapp.com','databaseURL':'https://carbonkaran-ee997-default-rtdb.asia-southeast1.firebasedatabase.app','projectId':'carbonkaran-ee997','storageBucket':'carbonkaran-ee997.firebasestorage.app','messagingSenderId':'957146702517','appId':'1:957146702517:web:7b86b169e869047d5594fc'};
+  if(!D.firebaseConfig)D.firebaseConfig=_HARDCODED_FB;
+  setTimeout(()=>{
+    const fc=document.getElementById('firebase-config');
+    if(fc&&!fc.value.trim())fc.value=JSON.stringify(D.firebaseConfig,null,2);
+    const wasReset=!localStorage.getItem('ck_v7');
+    connectFirebase(wasReset);
+  },1500);
   // Discover preload
   loadDiscover();
   // Notification scheduling (mobile)
   scheduleNotifs();
   // Greeting
-  console.log('%cCARBON × KARAN v7 ⚡ INITIALIZED','color:#6c63ff;font-size:16px;font-weight:900');
+  console.log('%cCARBON × KARAN v7 ⚡','color:#6c63ff;font-size:24px;font-weight:900');
+  console.log('%c© 2026 Karan Singh — Personal Life OS — Unauthorized use prohibited','color:#ef4444;font-size:11px');
+  console.log('%cBuilt by Carbon AI for Karan Singh, KIT AIML, Kanpur','color:#22c55e;font-size:11px');
 }
 
 // ── NOTIFICATIONS ──
@@ -4185,45 +4254,83 @@ function scheduleNotifs(){
 
 
 // ── UI CLICK SOUNDS (Web Audio, no files) ──
+// Different feel for different buttons - subtle, satisfying, not irritating
 let _uiAC=null;
 function _uiSound(type){
   try{
     if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
     if(_uiAC.state==='suspended')_uiAC.resume();
-    const o=_uiAC.createOscillator(),g=_uiAC.createGain();
-    o.connect(g);g.connect(_uiAC.destination);
     const now=_uiAC.currentTime;
-    // nav = soft tap, action = slightly brighter
-    const cfg={
-      nav:   {f:520,f2:620,t:'sine',v:.06,d:.08},
-      action:{f:620,f2:720,t:'sine',v:.07,d:.06},
-      quest: {f:880,f2:1100,t:'sine',v:.07,d:.12},
-      win:   {f:660,f2:880,t:'sine',v:.08,d:.18}
-    }[type]||{f:520,t:'sine',v:.06,d:.08};
-    o.type=cfg.t;
-    o.frequency.setValueAtTime(cfg.f,now);
-    if(cfg.f2)o.frequency.linearRampToValueAtTime(cfg.f2,now+cfg.d*.6);
-    g.gain.setValueAtTime(cfg.v,now);
-    g.gain.exponentialRampToValueAtTime(0.001,now+cfg.d);
-    o.start(now);o.stop(now+cfg.d+.02);
+    const sounds={
+      // Nav tap - soft low thud like iPhone home button feel
+      nav: ()=>{
+        const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+        o.connect(g);g.connect(_uiAC.destination);
+        o.type='sine';o.frequency.setValueAtTime(180,now);
+        o.frequency.exponentialRampToValueAtTime(90,now+0.08);
+        g.gain.setValueAtTime(0.12,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.09);
+        o.start(now);o.stop(now+0.1);
+      },
+      // Sidebar item - slightly brighter tap
+      sidebar: ()=>{
+        const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+        o.connect(g);g.connect(_uiAC.destination);
+        o.type='sine';o.frequency.setValueAtTime(300,now);
+        o.frequency.exponentialRampToValueAtTime(200,now+0.06);
+        g.gain.setValueAtTime(0.08,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.07);
+        o.start(now);o.stop(now+0.08);
+      },
+      // Action button (Connect, Save, Start) - satisfying confirm click
+      action: ()=>{
+        const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+        o.connect(g);g.connect(_uiAC.destination);
+        o.type='sine';o.frequency.setValueAtTime(520,now);
+        o.frequency.exponentialRampToValueAtTime(440,now+0.05);
+        g.gain.setValueAtTime(0.1,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.12);
+        o.start(now);o.stop(now+0.13);
+      },
+      // Quest complete - satisfying double-tap feel
+      quest: ()=>{
+        [0,0.06].forEach((delay,i)=>{
+          const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+          o.connect(g);g.connect(_uiAC.destination);
+          o.type='sine';
+          o.frequency.setValueAtTime(i===0?440:660,now+delay);
+          g.gain.setValueAtTime(0.09,now+delay);
+          g.gain.exponentialRampToValueAtTime(0.001,now+delay+0.08);
+          o.start(now+delay);o.stop(now+delay+0.09);
+        });
+      },
+      // Danger button (red - resign, delete) - lower dull thud
+      danger: ()=>{
+        const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+        o.connect(g);g.connect(_uiAC.destination);
+        o.type='sine';o.frequency.setValueAtTime(140,now);
+        o.frequency.exponentialRampToValueAtTime(80,now+0.1);
+        g.gain.setValueAtTime(0.1,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.11);
+        o.start(now);o.stop(now+0.12);
+      }
+    };
+    if(sounds[type])sounds[type]();
   }catch(e){}
 }
 function _attachNavSounds(){
-  // Mobile nav buttons
-  document.querySelectorAll('.mni-b,.mni').forEach(b=>{
-    b.addEventListener('click',()=>_uiSound('nav'),{passive:true});
-  });
-  // Sidebar nav items
-  document.querySelectorAll('.ni').forEach(b=>{
-    b.addEventListener('click',()=>_uiSound('nav'),{passive:true});
-  });
-  // Primary action buttons (btn-a, btn-g, btn-r)
-  document.querySelectorAll('.btn-a,.btn-g,.btn-r').forEach(b=>{
-    b.addEventListener('click',()=>_uiSound('action'),{passive:true});
-  });
+  // Use event delegation — works on ALL buttons including dynamically rendered ones
+  document.addEventListener('click',function(e){
+    const t=e.target;
+    // Find closest button/clickable
+    const btn=t.closest('.mni-b,.mni,.ni,.btn-a,.btn-g,.btn-r,.btn,.qi,.lf-btn,.lf-tr,.tab');
+    if(!btn)return;
+    if(btn.matches('.mni-b'))return _uiSound('nav');
+    if(btn.matches('.ni'))return _uiSound('sidebar');
+    if(btn.matches('.btn-a,.btn-g'))return _uiSound('action');
+    if(btn.matches('.btn-r'))return _uiSound('danger');
+    if(btn.matches('.qi'))return _uiSound('quest');
+    if(btn.matches('.lf-btn,.lf-tr'))return _uiSound('action');
+    if(btn.matches('.tab,.btn'))return _uiSound('nav');
+  },{passive:true});
 }
-// Attach after DOM is ready
-setTimeout(_attachNavSounds,800);
+setTimeout(_attachNavSounds,600);
 
 window.addEventListener('load',init);
 
