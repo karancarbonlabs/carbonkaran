@@ -390,11 +390,13 @@ html,body{height:100%;overflow:hidden;font-family:var(--fnt,'Nunito',sans-serif)
 
 /* ── TOAST ── */
 /* ── CONFETTI / SPECIAL DAY ── */
-/* Font size */
-body.fs-small .ph-t,.fs-small .ph-s{font-size:calc(var(--base,1em)*.85)}
-body.fs-large .ph-t,.fs-large .ph-s{font-size:calc(var(--base,1em)*1.15)}
+/* Font size — uses zoom to scale all inline px sizes too */
+body.fs-small #content{zoom:0.88}
+body.fs-large #content{zoom:1.12}
 body.fs-small{font-size:13px}body.fs-large{font-size:17px}
 @keyframes rippleOut{0%{transform:scale(0);opacity:.5}100%{transform:scale(4);opacity:0}}
+@keyframes goldBlaze{0%{box-shadow:0 0 0 0 rgba(251,191,36,.8)}50%{box-shadow:0 0 20px 8px rgba(251,191,36,.4)}100%{box-shadow:0 0 0 0 rgba(251,191,36,0)}}
+@keyframes thunderFlash{0%,100%{filter:none}25%{filter:brightness(2) saturate(2)}75%{filter:brightness(1.5) hue-rotate(30deg)}}
 .ripple-el{position:absolute;border-radius:50%;pointer-events:none;animation:rippleOut .5s ease-out forwards;z-index:9999}
 @keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
 @keyframes fireRise{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-80vh) scale(0.3);opacity:0}}
@@ -1720,9 +1722,19 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
       <div><div style="font-size:13px;font-weight:700;color:var(--txt)">Celebration Effects</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-top:2px">Matrix rain, fire, thunder, rank up</div></div>
       <button id="celeb-toggle-btn" onclick="toggleCelebEffects()" style="padding:8px 18px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;cursor:pointer;background:var(--a);color:#fff">ON</button>
     </div>
-    <div style="display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
       <div><div style="font-size:13px;font-weight:700;color:var(--txt)">Ripple Effect</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-top:2px">Circular ripple when you tap buttons</div></div>
       <button id="ripple-toggle-btn" onclick="toggleRipple()" style="padding:8px 18px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;cursor:pointer;background:var(--a);color:#fff">ON</button>
+    </div>
+    <div style="margin-top:12px">
+      <div style="font-size:13px;font-weight:700;color:var(--txt);margin-bottom:4px">Button Press Style</div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-bottom:8px">Effect when you tap quest & action buttons</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <button id="bps-none" onclick="setBtnPressStyle('none')" style="flex:1;min-width:60px;padding:9px 4px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--txt3);box-shadow:var(--nms)">None</button>
+        <button id="bps-gold" onclick="setBtnPressStyle('gold')" style="flex:1;min-width:60px;padding:9px 4px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;cursor:pointer;background:var(--a);color:#fff;box-shadow:var(--nmis)">⚡ Gold</button>
+        <button id="bps-thunder" onclick="setBtnPressStyle('thunder')" style="flex:1;min-width:60px;padding:9px 4px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--txt3);box-shadow:var(--nms)">⚡ Thunder</button>
+        <button id="bps-dark" onclick="setBtnPressStyle('dark')" style="flex:1;min-width:60px;padding:9px 4px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--txt3);box-shadow:var(--nms)">🌑 Dark</button>
+      </div>
     </div>
   </div>
   <!-- Font Size -->
@@ -1814,7 +1826,7 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
 // Data · Nav · XP · Quests · Clock · Dashboard
 // ═══════════════════════════════════
 
-const DEFAULT={xp:0,streak:0,cleanDays:0,lastActive:null,lastSQClean:null,lastStreakDate:null,questsDoneByDate:{},chessRating:600,chessLog:[],chessGames:[],chessWinsToday:0,chessLastDate:null,chessLevel:'easy',expenses:[],vocab:[],notes:[],wins:{},water:{},weeklyXP:{},journal:[],journalPIN:null,appPIN:null,sqPIN:null,theme:'light',font:'Nunito',userName:'Karan Singh',breathCycles:0,breathSecs:0,vocalSessions:0,vocalStreak:0,vocalLastDate:null,customQuests:[],mathBest:0,mathTimes:[],mathHistory:[],shadowLog:[],mana:1700,rank:'E',totalXP:0,weeklyCode:null,guitarSessions:0,guitarStreak:0,guitarLastDate:null,guitarLog:[],brainBest:0,brainHistory:[],analyticsProgress:{},mode:'normal',metroBpm:120,workoutLog:{},workoutStreak:0,workoutLastDate:null,weight:62,manaItems:[],notifs:{enabled:true,morning:true,evening:true,sq:true},firebaseConfig:null,battleActive:false,battleStart:null,sqBestStreak:0,chatHistory:[],brainSpeed:2,freshStartUses:{},freshStartExtra:{},books:[],pomLog:[],pomLastSubject:"",vocabWeights:{},soundTheme:'soft',rippleEffect:true,celebEffects:true,fontSize:'medium',wakeTime:'07:00',waterGoal:12};
+const DEFAULT={xp:0,streak:0,cleanDays:0,lastActive:null,lastSQClean:null,lastStreakDate:null,questsDoneByDate:{},chessRating:600,chessLog:[],chessGames:[],chessWinsToday:0,chessLastDate:null,chessLevel:'easy',expenses:[],vocab:[],notes:[],wins:{},water:{},weeklyXP:{},journal:[],journalPIN:null,appPIN:null,sqPIN:null,theme:'light',font:'Nunito',userName:'Karan Singh',breathCycles:0,breathSecs:0,vocalSessions:0,vocalStreak:0,vocalLastDate:null,customQuests:[],mathBest:0,mathTimes:[],mathHistory:[],shadowLog:[],mana:1700,rank:'E',totalXP:0,weeklyCode:null,guitarSessions:0,guitarStreak:0,guitarLastDate:null,guitarLog:[],brainBest:0,brainHistory:[],analyticsProgress:{},mode:'normal',metroBpm:120,workoutLog:{},workoutStreak:0,workoutLastDate:null,weight:62,manaItems:[],notifs:{enabled:true,morning:true,evening:true,sq:true},firebaseConfig:null,battleActive:false,battleStart:null,sqBestStreak:0,chatHistory:[],brainSpeed:2,freshStartUses:{},freshStartExtra:{},books:[],pomLog:[],pomLastSubject:"",vocabWeights:{},soundTheme:'soft',rippleEffect:true,celebEffects:true,btnPressStyle:'gold',fontSize:'medium',wakeTime:'07:00',waterGoal:12};
 
 let D={};
 let firebaseApp2=null,firebaseRef=null,saveTimer=null,currentPage='dash';
@@ -1841,6 +1853,8 @@ if(D.lastActive && D.lastActive!==today){
   // Keep weeklyXP[today] as 0 (already set above)
 }
 D.lastActive=today;save();}
+// Give 1700 starting mana — fires once ever via _mana1700bonus flag
+if(!D._mana1700bonus){D.mana=Math.max(D.mana||0,1700);D._mana1700bonus=true;save();}
 
 function save(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem('ck_v7',JSON.stringify(D));}catch(e){if(e.name==='QuotaExceededError'||e.code===22){toast('⚠ Storage full — connect Firebase to keep data safe');}}// Save Firebase config separately so it survives a browser reset
 if(D.firebaseConfig){try{localStorage.setItem('ck_fb_cfg',JSON.stringify(D.firebaseConfig));}catch(e){}}
@@ -4055,6 +4069,71 @@ function _spawnRipple(e){
   target.appendChild(el);
   setTimeout(()=>el.remove(),500);
 }
+// ── GOLDEN BLAZE BUTTON EFFECT ──
+// Fires on key action buttons — quest items, mark clean, chess win
+function _btnPressEffect(el){
+  const style=(D.btnPressStyle)||'gold';
+  if(style==='none'||!el)return;
+  el.style.position='relative';el.style.overflow='hidden';
+  const flash=document.createElement('div');
+  flash.style.position='absolute';
+  flash.style.inset='0';
+  flash.style.borderRadius='inherit';
+  flash.style.pointerEvents='none';
+  flash.style.zIndex='10';
+
+  if(style==='gold'){
+    // Warm gold glow pulse
+    flash.style.background='linear-gradient(135deg,rgba(251,191,36,.35),rgba(245,158,11,.15))';
+    flash.style.animation='thunderFlash 0.35s ease-out forwards';
+    el.style.animation='goldBlaze 0.5s ease-out forwards';
+    el.appendChild(flash);
+    setTimeout(()=>{flash.remove();el.style.animation='';},500);
+  }
+  else if(style==='thunder'){
+    // Purple-white lightning flash
+    flash.style.background='linear-gradient(135deg,rgba(167,139,250,.5),rgba(255,255,255,.2))';
+    flash.style.animation='thunderFlash 0.25s ease-out forwards';
+    el.style.boxShadow='0 0 12px rgba(167,139,250,.8)';
+    el.appendChild(flash);
+    // Quick thunder sound
+    try{
+      if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
+      if(_uiAC.state==='suspended')_uiAC.resume();
+      const now=_uiAC.currentTime;
+      const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+      o.connect(g);g.connect(_uiAC.destination);
+      o.type='sawtooth';o.frequency.setValueAtTime(80,now);
+      o.frequency.exponentialRampToValueAtTime(40,now+0.1);
+      g.gain.setValueAtTime(0.06,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.12);
+      o.start(now);o.stop(now+0.13);
+    }catch(e){}
+    setTimeout(()=>{flash.remove();el.style.boxShadow='';},300);
+  }
+  else if(style==='dark'){
+    // Dark storm — screen edge darkens, element gets dark flash
+    flash.style.background='linear-gradient(135deg,rgba(0,0,0,.4),rgba(30,0,60,.3))';
+    flash.style.animation='thunderFlash 0.3s ease-out forwards';
+    el.style.boxShadow='0 0 16px rgba(0,0,0,.9)';
+    // Small dark overlay on whole screen briefly
+    const sov=document.createElement('div');
+    sov.style=`position:fixed;inset:0;background:rgba(0,0,0,.15);pointer-events:none;z-index:9990;transition:opacity .2s`;
+    document.body.appendChild(sov);
+    el.appendChild(flash);
+    setTimeout(()=>{sov.style.opacity='0';},150);
+    setTimeout(()=>{flash.remove();el.style.boxShadow='';sov.remove();},350);
+  }
+}
+// Keep old name as alias so nothing breaks
+function _goldBlaze(el){_btnPressEffect(el);}
+// Attach to key buttons via delegation
+function _setupGoldBlaze(){
+  document.addEventListener('click',function(e){
+    if((D.btnPressStyle||'gold')==='none')return;
+    const btn=e.target.closest('.qi,.btn-a,.btn-g');
+    if(btn)_btnPressEffect(btn);
+  },{passive:true});
+}
 function _setupRipple(){
   document.addEventListener('click',function(e){
     if(D.rippleEffect===false)return;
@@ -4071,6 +4150,47 @@ function toggleCelebEffects(){
   const btn=document.getElementById('celeb-toggle-btn');
   if(btn){btn.textContent=D.celebEffects===false?'OFF':'ON';btn.style.background=D.celebEffects===false?'var(--sd)':'var(--a)';btn.style.color=D.celebEffects===false?'var(--txt3)':'#fff';}
   toast(D.celebEffects===false?'Effects OFF — clean mode':'Effects ON — full celebrations');
+}
+function setBtnPressStyle(style){
+  D.btnPressStyle=style;save();
+  ['none','gold','thunder','dark'].forEach(s=>{
+    const b=document.getElementById('bps-'+s);
+    if(b){
+      b.style.background=s===style?'var(--a)':'var(--bg)';
+      b.style.color=s===style?'#fff':'var(--txt3)';
+      b.style.boxShadow=s===style?'var(--nmis)':'var(--nms)';
+    }
+  });
+  if(style!=='none'){
+    // Preview on the settings area
+    const preview=document.getElementById('bps-'+style);
+    if(preview)setTimeout(()=>_btnPressEffect(preview),100);
+  }
+  toast({none:'Button effects OFF',gold:'⚡ Gold Blaze ON',thunder:'⚡ Thunder ON',dark:'🌑 Dark Cloud ON'}[style]||'Set');
+}
+function renderBtnPressStyle(){
+  const style=D.btnPressStyle||'gold';
+  ['none','gold','thunder','dark'].forEach(s=>{
+    const b=document.getElementById('bps-'+s);
+    if(b){
+      b.style.background=s===style?'var(--a)':'var(--bg)';
+      b.style.color=s===style?'#fff':'var(--txt3)';
+      b.style.boxShadow=s===style?'var(--nmis)':'var(--nms)';
+    }
+  });
+}
+function toggleGoldBlaze(){
+  D.goldBlazeEffect=D.goldBlazeEffect===false?true:false;
+  save();
+  const btn=document.getElementById('gold-blaze-btn');
+  if(btn){
+    btn.textContent=D.goldBlazeEffect===false?'OFF':'ON';
+    btn.style.background=D.goldBlazeEffect===false?'var(--sd)':'var(--a)';
+    btn.style.color=D.goldBlazeEffect===false?'var(--txt3)':'#fff';
+  }
+  // Preview when turning on
+  if(D.goldBlazeEffect!==false)setTimeout(()=>_goldBlaze(btn),100);
+  toast(D.goldBlazeEffect===false?'Gold Blaze OFF':'⚡ Gold Blaze ON');
 }
 function toggleRipple(){
   D.rippleEffect=D.rippleEffect===false?true:false;
@@ -4103,6 +4223,8 @@ function saveWaterGoal(){
 }
 
 function renderSettingsToggles(){
+  // Button Press Style
+  renderBtnPressStyle();
   // Ripple
   const rb=document.getElementById('ripple-toggle-btn');
   if(rb){rb.textContent=D.rippleEffect===false?'OFF':'ON';rb.style.background=D.rippleEffect===false?'var(--sd)':'var(--a)';rb.style.color=D.rippleEffect===false?'var(--txt3)':'#fff';}
@@ -5126,6 +5248,7 @@ function init(){
   if(D.fontSize&&D.fontSize!=='medium')document.body.classList.add('fs-'+D.fontSize);
   // Setup ripple
   _setupRipple();
+  _setupGoldBlaze();
   chInitBoard();
   chInitCanvas();
   // Render dashboard
