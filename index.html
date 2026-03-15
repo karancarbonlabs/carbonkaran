@@ -66,6 +66,13 @@ html,body{height:100%;overflow:hidden;font-family:var(--fnt,'Nunito',sans-serif)
   --nm:8px 8px 18px #120e00,-8px -8px 18px #302800;--nms:5px 5px 12px #120e00,-5px -5px 12px #302800;--nmxs:3px 3px 7px #120e00,-3px -3px 7px #302800;--nmi:inset 4px 4px 10px #120e00,inset -4px -4px 10px #302800;--nmis:inset 3px 3px 7px #120e00,inset -3px -3px 7px #302800}
 [data-theme="slate"]{--bg:#1c2030;--sd:#10141e;--sl:#2c3248;--txt:#d8dcf0;--txt2:#7880b0;--txt3:#3c4468;
   --nm:8px 8px 18px #10141e,-8px -8px 18px #2c3248;--nms:5px 5px 12px #10141e,-5px -5px 12px #2c3248;--nmxs:3px 3px 7px #10141e,-3px -3px 7px #2c3248;--nmi:inset 4px 4px 10px #10141e,inset -4px -4px 10px #2c3248;--nmis:inset 3px 3px 7px #10141e,inset -3px -3px 7px #2c3248}
+/* ── SECRET THEMES (unlock with 500💎) ── */
+[data-theme="void"]{--bg:#050508;--sd:#000003;--sl:#0d0d14;--txt:#e0e0ff;--txt2:#6060a0;--txt3:#303060;--a:#7c3aed;--a2:#4f46e5;--hi:#a78bfa;--gr:#34d399;--rd:#f87171;--mn:#f59e0b;--gd:#fbbf24;--tex:rgba(255,255,255,.03);
+  --nm:6px 6px 14px #000003,-6px -6px 14px #0d0d14;--nms:4px 4px 9px #000003,-4px -4px 9px #0d0d14;--nmxs:2px 2px 6px #000003,-2px -2px 6px #0d0d14;--nmi:inset 4px 4px 10px #000003,inset -4px -4px 10px #0d0d14;--nmis:inset 3px 3px 7px #000003,inset -3px -3px 7px #0d0d14}
+[data-theme="ember"]{--bg:#1a0a00;--sd:#0f0500;--sl:#2a1200;--txt:#ffd4a0;--txt2:#c07840;--txt3:#703820;--a:#f97316;--a2:#dc2626;--hi:#fb923c;--gr:#86efac;--rd:#fca5a5;--mn:#fbbf24;--gd:#fde68a;--tex:rgba(255,150,50,.04);
+  --nm:6px 6px 14px #0f0500,-6px -6px 14px #2a1200;--nms:4px 4px 9px #0f0500,-4px -4px 9px #2a1200;--nmxs:2px 2px 6px #0f0500,-2px -2px 6px #2a1200;--nmi:inset 4px 4px 10px #0f0500,inset -4px -4px 10px #2a1200;--nmis:inset 3px 3px 7px #0f0500,inset -3px -3px 7px #2a1200}
+[data-theme="matrix"]{--bg:#000d00;--sd:#000500;--sl:#001800;--txt:#00ff41;--txt2:#00bb30;--txt3:#005515;--a:#00ff41;--a2:#00cc33;--hi:#39ff14;--gr:#00ff41;--rd:#ff4444;--mn:#ffff00;--gd:#ffff00;--tex:rgba(0,255,65,.03);
+  --nm:6px 6px 14px #000500,-6px -6px 14px #001800;--nms:4px 4px 9px #000500,-4px -4px 9px #001800;--nmxs:2px 2px 6px #000500,-2px -2px 6px #001800;--nmi:inset 4px 4px 10px #000500,inset -4px -4px 10px #001800;--nmis:inset 3px 3px 7px #000500,inset -3px -3px 7px #001800}
 
 /* ── TEXTURE OVERLAY MIXIN ── */
 .tex::after{content:'';position:absolute;inset:0;background:var(--tex);pointer-events:none;border-radius:inherit;opacity:.7}
@@ -382,6 +389,11 @@ html,body{height:100%;overflow:hidden;font-family:var(--fnt,'Nunito',sans-serif)
 .notif-ico{width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;position:relative;z-index:1}
 
 /* ── TOAST ── */
+/* ── CONFETTI / SPECIAL DAY ── */
+@keyframes confettiFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+@keyframes celebPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.confetti-piece{position:fixed;top:-10px;width:8px;height:8px;border-radius:2px;animation:confettiFall linear forwards;pointer-events:none;z-index:9999;}
+.celeb-banner{position:fixed;top:70px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;padding:10px 20px;border-radius:16px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;text-align:center;z-index:9998;box-shadow:0 4px 20px var(--a)66;animation:celebPulse 1s ease-in-out 3;max-width:90vw;}
 #toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%) translateY(16px);background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:10px 20px;border-radius:20px;z-index:9990;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;box-shadow:0 4px 16px rgba(108,99,255,.4)}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
@@ -713,6 +725,10 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
     <div class="shop-item"><div class="shop-ico">🛡</div><div style="flex:1;position:relative;z-index:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">Guilt Shield</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">Protect your streak today</div></div><button class="btn-mn" onclick="buyMana('guilt_shield',175)">175 💎</button></div>
     <div class="shop-item"><div class="shop-ico">🌑</div><div style="flex:1;position:relative;z-index:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">SQ Armour</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">1 free SQ miss, no penalty</div></div><button class="btn-mn" onclick="buyMana('sq_armour',250)">250 💎</button></div>
     <div class="shop-item"><div class="shop-ico">🔮</div><div style="flex:1;position:relative;z-index:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">Carbon Vision</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">Deep AI analysis of your week</div></div><button class="btn-mn" onclick="buyMana('carbon_vision',200)">200 💎</button></div>
+    <div class="shop-item"><div class="shop-ico">🔥</div><div style="flex:1;position:relative;z-index:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">Streak Freeze</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">Miss today, streak stays alive</div></div><button class="btn-mn" onclick="buyMana('streak_freeze',400)">400 💎</button></div>
+    <div class="shop-item"><div class="shop-ico">🎨</div><div style="flex:1;position:relative;z-index:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">Secret Themes</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">Unlock Void, Ember, Matrix themes</div></div><button class="btn-mn" onclick="buyMana('theme_unlock',500)">500 💎</button></div>
+    <div class="shop-item"><div class="shop-ico">🎉</div><div style="flex:1;position:relative;z-index:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">Confetti Blast</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">Massive confetti explosion + sound</div></div><button class="btn-mn" onclick="buyMana('confetti_blast',75)">75 💎</button></div>
+    <div class="shop-item"><div class="shop-ico">📝</div><div style="flex:1;position:relative;z-index:1"><div style="font-size:13px;font-weight:700;color:var(--txt)">Carbon Letter</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">Personal AI letter from your real stats</div></div><button class="btn-mn" onclick="buyMana('carbon_letter',100)">100 💎</button></div>
   </div>
 </div>
 
@@ -1632,6 +1648,16 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
       <div style="text-align:center"><div class="thsw" id="th-gold" style="background:#1e1800" onclick="setTheme('gold')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Gold</div></div>
       <div style="text-align:center"><div class="thsw" id="th-slate" style="background:#1c2030" onclick="setTheme('slate')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Slate</div></div>
     </div>
+    <!-- Secret Themes -->
+    <div id="secret-themes-section" style="display:none;margin-top:14px;border-top:1px solid var(--sl);padding-top:14px">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--gd);letter-spacing:2px;margin-bottom:10px">🔓 SECRET THEMES UNLOCKED</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <div style="text-align:center"><div class="thsw" id="th-void" style="background:#050508;border:1px solid #7c3aed" onclick="setTheme('void')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Void</div></div>
+        <div style="text-align:center"><div class="thsw" id="th-ember" style="background:#1a0a00;border:1px solid #f97316" onclick="setTheme('ember')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Ember</div></div>
+        <div style="text-align:center"><div class="thsw" id="th-matrix" style="background:#000d00;border:1px solid #00ff41" onclick="setTheme('matrix')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Matrix</div></div>
+      </div>
+    </div>
+    <div id="secret-themes-locked" style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3)">🔒 3 secret themes locked — unlock with 500💎 in Mana Shop</div>
   </div>
   <!-- Profile -->
   <div class="c"><div class="ch">Profile</div>
@@ -1657,6 +1683,16 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
       <input class="inp" id="set-j-pin" type="number" placeholder="6-digit Journal PIN" style="margin-bottom:0;flex:1">
       <button class="btn-a" onclick="setJournalPIN()" style="flex-shrink:0;font-size:11px">Set</button>
       <button class="btn-r" onclick="removeJournalPIN()" style="flex-shrink:0;font-size:11px">Remove</button>
+    </div>
+  </div>
+  <!-- Sound Theme -->
+  <div class="c">
+    <div class="ch">🔊 Button Sounds</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-bottom:10px">All soft — just different character. Tap to preview.</div>
+    <div style="display:flex;gap:8px">
+      <button id="snd-soft" onclick="setSoundTheme('soft')" style="flex:1;padding:10px 6px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;cursor:pointer;background:var(--a);color:#fff;box-shadow:var(--nmis)">🔇 Soft</button>
+      <button id="snd-minimal" onclick="setSoundTheme('minimal')" style="flex:1;padding:10px 6px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--txt3);box-shadow:var(--nms)">◦ Minimal</button>
+      <button id="snd-crisp" onclick="setSoundTheme('crisp')" style="flex:1;padding:10px 6px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--txt3);box-shadow:var(--nms)">● Crisp</button>
     </div>
   </div>
   <!-- Notifications -->
@@ -1719,7 +1755,7 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
 // Data · Nav · XP · Quests · Clock · Dashboard
 // ═══════════════════════════════════
 
-const DEFAULT={xp:0,streak:0,cleanDays:0,lastActive:null,lastSQClean:null,lastStreakDate:null,questsDoneByDate:{},chessRating:600,chessLog:[],chessGames:[],chessWinsToday:0,chessLastDate:null,chessLevel:'easy',expenses:[],vocab:[],notes:[],wins:{},water:{},weeklyXP:{},journal:[],journalPIN:null,appPIN:null,sqPIN:null,theme:'light',font:'Nunito',userName:'Karan Singh',breathCycles:0,breathSecs:0,vocalSessions:0,vocalStreak:0,vocalLastDate:null,customQuests:[],mathBest:0,mathTimes:[],mathHistory:[],shadowLog:[],mana:0,rank:'E',totalXP:0,weeklyCode:null,guitarSessions:0,guitarStreak:0,guitarLastDate:null,guitarLog:[],brainBest:0,brainHistory:[],analyticsProgress:{},mode:'normal',metroBpm:120,workoutLog:{},workoutStreak:0,workoutLastDate:null,weight:62,manaItems:[],notifs:{enabled:true,morning:true,evening:true,sq:true},firebaseConfig:null,battleActive:false,battleStart:null,sqBestStreak:0,chatHistory:[],brainSpeed:2,freshStartUses:{},freshStartExtra:{},books:[],pomLog:[],pomLastSubject:"",vocabWeights:{}};
+const DEFAULT={xp:0,streak:0,cleanDays:0,lastActive:null,lastSQClean:null,lastStreakDate:null,questsDoneByDate:{},chessRating:600,chessLog:[],chessGames:[],chessWinsToday:0,chessLastDate:null,chessLevel:'easy',expenses:[],vocab:[],notes:[],wins:{},water:{},weeklyXP:{},journal:[],journalPIN:null,appPIN:null,sqPIN:null,theme:'light',font:'Nunito',userName:'Karan Singh',breathCycles:0,breathSecs:0,vocalSessions:0,vocalStreak:0,vocalLastDate:null,customQuests:[],mathBest:0,mathTimes:[],mathHistory:[],shadowLog:[],mana:0,rank:'E',totalXP:0,weeklyCode:null,guitarSessions:0,guitarStreak:0,guitarLastDate:null,guitarLog:[],brainBest:0,brainHistory:[],analyticsProgress:{},mode:'normal',metroBpm:120,workoutLog:{},workoutStreak:0,workoutLastDate:null,weight:62,manaItems:[],notifs:{enabled:true,morning:true,evening:true,sq:true},firebaseConfig:null,battleActive:false,battleStart:null,sqBestStreak:0,chatHistory:[],brainSpeed:2,freshStartUses:{},freshStartExtra:{},books:[],pomLog:[],pomLastSubject:"",vocabWeights:{},soundTheme:'soft'};
 
 let D={};
 let firebaseApp2=null,firebaseRef=null,saveTimer=null,currentPage='dash';
@@ -1878,7 +1914,23 @@ function toggleQuest(id,baseXP){
   if(currentPage==='dash')renderDash();
 }
 
-function updateStreak(){const today=getToday();const done=todayDone();const allLen=CORE_QUESTS.length+(D.customQuests||[]).length;if(done.length>=Math.ceil(allLen*0.6)){if(D.lastStreakDate===getYesterday()){D.streak=(D.streak||0)+1;}else if(D.lastStreakDate!==today){D.streak=1;}D.lastStreakDate=today;}}
+function updateStreak(){
+  const today=getToday();const done=todayDone();
+  const allLen=CORE_QUESTS.length+(D.customQuests||[]).length;
+  if(done.length>=Math.ceil(allLen*0.6)){
+    if(D.lastStreakDate===getYesterday()){D.streak=(D.streak||0)+1;_checkStreakMilestone(D.streak);}
+    else if(D.lastStreakDate!==today){D.streak=1;}
+    D.lastStreakDate=today;
+  } else {
+    // Check streak freeze or shield — protect streak even if below 60%
+    const hasFreezeToday=D.streakFreezeDate===today;
+    const hasShieldToday=D.streakShieldDate===today;
+    if((hasFreezeToday||hasShieldToday)&&D.lastStreakDate===getYesterday()){
+      // Keep streak alive — freeze/shield active
+      D.lastStreakDate=today; // Extend streak date without incrementing
+    }
+  }
+}
 
 function filterQuests(type,btn){document.querySelectorAll('#p-quests .tabs .tab').forEach(t=>t.classList.remove('on'));if(btn)btn.classList.add('on');renderQuestList(type);}
 function renderQuestList(filter='all'){
@@ -1930,7 +1982,12 @@ function renderSchedule(){const now=new Date();const curMins=now.getHours()*60+n
 function renderDash(){
   const today=getToday();const done=todayDone();const allQ=[...CORE_QUESTS,...(D.customQuests||[]).map(q=>({...q,id:'cq_'+q.id}))];
   const todayX=getTodayXP();const maxX=getMaxXP();const r=getRank(D.totalXP||0);
-  const h=new Date().getHours();setTxt('dash-greet',(h<5?'Still Up? 🌙':h<12?'Good Morning ⚡':h<17?'Good Afternoon ⚡':h<21?'Good Evening ⚡':'Good Night 🌑'));
+  const h=new Date().getHours();
+  // Check special day — override greeting
+  const _sp=_isSpecialDay();
+  const _greetBase=h<5?'Still Up? 🌙':h<12?'Good Morning ⚡':h<17?'Good Afternoon ⚡':h<21?'Good Evening ⚡':'Good Night 🌑';
+  setTxt('dash-greet',_sp?(_sp.emoji+' '+_sp.name+' Mode — '+_greetBase):_greetBase);
+  _checkSpecialDay();
   setTxt('dash-date',new Date().toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'}).toUpperCase()+' · YOUR SYSTEM IS LIVE');
   // Mode badge on dashboard
   const mbd=document.getElementById('dash-mode-badge');if(mbd){if(D.mode&&D.mode!=='normal'){mbd.innerHTML=`<div class="mode-badge mode-${D.mode}">${D.mode==='trip'?'✈ TRIP MODE ACTIVE':D.mode==='exam'?'📝 EXAM MODE — Only Study Earns XP':'🚨 EMERGENCY MODE'}</div>`;}else mbd.innerHTML='';}
@@ -3019,7 +3076,7 @@ function checkVocabQuiz(){
   const wordId=q.id||q.word;
   _vqRecord(wordId,ok,parseFloat(elapsed));
   if(ok){
-    const mana=_vqSession.streak>=5?3:2;
+    const mana=_vqSession.streak>=5?2:1;
     const streakMsg=_vqSession.streak>=5?' 🔥 Streak +'+mana+' Mana!':'';
     res.style.color='var(--gr)';res.textContent='✓ Correct! '+elapsed+'s · +'+mana+' Mana'+streakMsg;
     addMana(mana);toast('📖 Correct! +'+mana+' Mana · '+elapsed+'s');
@@ -3304,13 +3361,129 @@ function startBattleTimer(){
 // ── MANA SHOP ──
 function buyMana(item,cost){
   if((D.mana||0)<cost){toast('Need '+cost+' 💎 · You have '+(D.mana||0));return;}
+  const today=getToday();
   D.mana=(D.mana||0)-cost;
   D.manaItems=D.manaItems||[];
-  D.manaItems.push({item,date:getToday()});
+  D.manaItems.push({item,date:today});
   updateTopBar();save();
-  const msgs={xp_boost:'⚡ XP Boost active — next quests give 1.5×',guilt_shield:'🛡 Streak protected today',sq_armour:'🌑 SQ Armour — 1 free miss no penalty',carbon_vision:'🔮 Carbon Vision unlocked'};
-  toast(msgs[item]||'Purchased!');
+
+  // ── Handle each item ──
+  if(item==='xp_boost'){
+    toast('⚡ XP Boost ON — next 3 quests give 1.5× XP today');
+  }
+  else if(item==='guilt_shield'){
+    // Protect streak — if missed today, don't reset
+    D.streakShieldDate=today;save();
+    toast('🛡 Streak Shield ON — streak protected for today');
+  }
+  else if(item==='sq_armour'){
+    D.sqArmourDate=today;save();
+    toast('🌑 SQ Armour ON — 1 free miss tonight, no penalty');
+  }
+  else if(item==='carbon_vision'){
+    // Show deep analysis in chat
+    nav('chat');
+    setTimeout(()=>quickChat('deep analyze'),500);
+    toast('🔮 Carbon Vision — deep analysis loading...');
+  }
+  else if(item==='streak_freeze'){
+    // Freeze streak for 1 day — stores freeze date
+    D.streakFreezeDate=today;save();
+    toast('🔥 Streak Freeze activated — streak safe for today even if you miss');
+  }
+  else if(item==='theme_unlock'){
+    D.secretThemesUnlocked=true;save();
+    renderSettings();
+    toast('🎨 Secret themes unlocked — Void, Ember, Matrix now available in Settings!');
+  }
+  else if(item==='confetti_blast'){
+    // Big confetti with sound — 3 seconds
+    _launchConfettiBig();
+    toast('🎉 CONFETTI BLAST!');
+  }
+  else if(item==='carbon_letter'){
+    // AI writes personal letter
+    _showCarbonLetter();
+    toast('📝 Carbon is writing your letter...');
+  }
+
   if(currentPage==='profile')renderProfile();
+}
+
+// ── Confetti Blast (big, 3 seconds, with sound) ──
+function _launchConfettiBig(){
+  // Sound — celebratory ascending tones
+  try{
+    if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
+    if(_uiAC.state==='suspended')_uiAC.resume();
+    const now=_uiAC.currentTime;
+    [523,659,784,1047].forEach((freq,i)=>{
+      const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+      o.connect(g);g.connect(_uiAC.destination);
+      o.type='sine';
+      o.frequency.setValueAtTime(freq,now+i*0.12);
+      g.gain.setValueAtTime(0.12,now+i*0.12);
+      g.gain.exponentialRampToValueAtTime(0.001,now+i*0.12+0.25);
+      o.start(now+i*0.12);o.stop(now+i*0.12+0.26);
+    });
+  }catch(e){}
+  // Big confetti — 3 seconds, lots of pieces
+  const colors=['#6c63ff','#f59e0b','#10b981','#ef4444','#3b82f6','#ec4899','#f97316','#ffffff','#fbbf24'];
+  for(let i=0;i<120;i++){
+    setTimeout(()=>{
+      const el=document.createElement('div');
+      el.className='confetti-piece';
+      el.style.left=Math.random()*100+'vw';
+      el.style.background=colors[Math.floor(Math.random()*colors.length)];
+      el.style.width=(6+Math.random()*10)+'px';
+      el.style.height=(6+Math.random()*10)+'px';
+      el.style.borderRadius=Math.random()>0.5?'50%':'2px';
+      el.style.animationDuration=(2.5+Math.random()*1.5)+'s';
+      el.style.animationDelay='0s';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),4000);
+    },i*25);
+  }
+}
+
+// ── Carbon Letter ──
+async function _showCarbonLetter(){
+  // Build personal stats for letter
+  const r=getRank(D.totalXP||0);
+  const streak=D.streak||0;
+  const clean=D.cleanDays||0;
+  const chess=D.chessRating||600;
+  const vocab=(D.vocab||[]).length;
+  const wkXP=Object.values(D.weeklyXP||{}).slice(-7).reduce((a,b)=>a+b,0);
+
+  // Show loading modal
+  let modal=document.createElement('div');
+  modal.style=`position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px`;
+  modal.innerHTML=`<div style="background:var(--bg);border-radius:20px;padding:24px;max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.5)">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--a);letter-spacing:2px;margin-bottom:12px">📝 CARBON LETTER</div>
+    <div id="carbon-letter-text" style="font-size:13px;color:var(--txt);line-height:1.8;min-height:120px">Carbon is writing your letter...</div>
+    <button onclick="this.closest('[style]').remove()" style="margin-top:16px;width:100%;padding:12px;border-radius:12px;background:linear-gradient(135deg,var(--a),var(--a2));border:none;color:#fff;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;cursor:pointer">Close ✓</button>
+  </div>`;
+  document.body.appendChild(modal);
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:300,
+        messages:[{role:'user',content:`You are Carbon, Karan Singh's personal AI coach. Write him a short personal motivational letter (max 120 words). Use his real stats: Rank ${r.label} (${r.name}), ${D.totalXP||0} total XP, ${streak} day streak, ${clean} clean days, ${chess} chess ELO, ${vocab} vocab words learned, ${wkXP} XP this week. Be direct, personal, reference his actual numbers. End with one sharp challenge for this week. Sign it "— Carbon ⚡"`}]
+      })
+    });
+    const data=await resp.json();
+    const text=data.content&&data.content[0]&&data.content[0].text;
+    const el=document.getElementById('carbon-letter-text');
+    if(el)el.textContent=text||'Keep going Karan. The data shows you\'re building something real. Don\'t stop now. — Carbon ⚡';
+  }catch(e){
+    const el=document.getElementById('carbon-letter-text');
+    if(el)el.textContent='The numbers don\'t lie Karan. You\'re showing up. That\'s rarer than talent. Keep the streak alive — Carbon ⚡';
+  }
 }
 
 // ── DISCOVER ──
@@ -3574,6 +3747,33 @@ function freshStartUsesLeft(){
   const extra=(D.freshStartExtra&&D.freshStartExtra[q])||0;
   return Math.max(0,(FRESH_MAX_PER_QUARTER+extra)-used);
 }
+function setSoundTheme(theme){
+  D.soundTheme=theme;
+  save();
+  // Update UI
+  ['soft','minimal','crisp'].forEach(t=>{
+    const b=document.getElementById('snd-'+t);
+    if(b){
+      b.style.background=t===theme?'var(--a)':'var(--bg)';
+      b.style.color=t===theme?'#fff':'var(--txt3)';
+      b.style.boxShadow=t===theme?'var(--nmis)':'var(--nms)';
+    }
+  });
+  // Play preview sound
+  setTimeout(()=>_uiSound('action'),100);
+  toast('Sound: '+{soft:'🔇 Soft',minimal:'◦ Minimal',crisp:'● Crisp'}[theme]);
+}
+function renderSoundTheme(){
+  const theme=(D.soundTheme)||'soft';
+  ['soft','minimal','crisp'].forEach(t=>{
+    const b=document.getElementById('snd-'+t);
+    if(b){
+      b.style.background=t===theme?'var(--a)':'var(--bg)';
+      b.style.color=t===theme?'#fff':'var(--txt3)';
+      b.style.boxShadow=t===theme?'var(--nmis)':'var(--nms)';
+    }
+  });
+}
 function toggleNotifications(){
   D.notifs=D.notifs||{};
   D.notifs.enabled=D.notifs.enabled===false?true:false;
@@ -3661,7 +3861,19 @@ function buyFreshUse(){
 }
 
 // ── SETTINGS ──
-function renderSettings(){renderNotifToggle();
+function renderSettings(){renderNotifToggle();renderSoundTheme();
+  // Show/hide secret themes based on unlock status
+  const sec=document.getElementById('secret-themes-section');
+  const locked=document.getElementById('secret-themes-locked');
+  if(sec)sec.style.display=D.secretThemesUnlocked?'block':'none';
+  if(locked)locked.style.display=D.secretThemesUnlocked?'none':'block';
+  // Update secret theme swatches
+  if(D.secretThemesUnlocked){
+    ['void','ember','matrix'].forEach(t=>{
+      const sw=document.getElementById('th-'+t);
+      if(sw)sw.classList.toggle('on',D.theme===t);
+    });
+  }
   renderFreshStart();
   setTxt('app-pin-status',D.appPIN?'App PIN: SET ✓':'No App PIN set');
   setTxt('sq-pin-status',D.sqPIN?'SQ PIN: SET ✓':'No SQ PIN set');
@@ -3729,11 +3941,21 @@ function connectFirebase(wasReset){
     firebaseRef.once('value').then(snap=>{
       const remote=snap.val();
       if(remote&&typeof remote==='object'){
-        const remoteTS2=remote._lastSaved||0;
+        // SMART MERGE on first connect
+          const today2=getToday();
+          const safeXP2=Math.max(D.totalXP||0,remote.totalXP||0);
+          const safeMana2=Math.max(D.mana||0,remote.mana||0);
+          const safeWater2=Math.max((D.water&&D.water[today2])||0,(remote.water&&remote.water[today2])||0);
+          const localQ2=(D.questsDoneByDate&&D.questsDoneByDate[today2])||[];
+          const remoteQ2=(remote.questsDoneByDate&&remote.questsDoneByDate[today2])||[];
+          const safeQ2=[...new Set([...localQ2,...remoteQ2])];
+          const remoteTS2=remote._lastSaved||0;
           const localTS2=D._lastSaved||0;
-          // Use whichever is newer — protects unticks, water, all changes
-          if(remoteTS2>=localTS2||(remote.totalXP||0)>(D.totalXP||0)){
+          if(remoteTS2>=localTS2||safeXP2>(D.totalXP||0)||safeWater2>((D.water&&D.water[today2])||0)){
           D=Object.assign({},DEFAULT,remote);
+          D.totalXP=safeXP2;D.mana=safeMana2;
+          D.water=D.water||{};D.water[today2]=safeWater2;
+          D.questsDoneByDate=D.questsDoneByDate||{};D.questsDoneByDate[today2]=safeQ2;
           // Re-apply daily reset after Firebase merge
           const todayMerge=getToday();
           if(D.lastActive&&D.lastActive!==todayMerge){
@@ -3758,18 +3980,34 @@ function connectFirebase(wasReset){
       firebaseRef.on('value',snap=>{
         const rd=snap.val();
         if(!rd||typeof rd!=='object')return;
+        const today=getToday();
+        // SMART MERGE — always take best value from both devices
+        const safeXP=Math.max(D.totalXP||0,rd.totalXP||0);
+        const safeMana=Math.max(D.mana||0,rd.mana||0);
+        const safeClean=Math.max(D.cleanDays||0,rd.cleanDays||0);
+        const safeStreak=Math.max(D.streak||0,rd.streak||0);
+        const safeChess=Math.max(D.chessRating||600,rd.chessRating||600);
+        // Water: take max glasses for today — phone added 1, laptop has 0 → takes 1
+        const localW=(D.water&&D.water[today])||0;
+        const remoteW=(rd.water&&rd.water[today])||0;
+        const safeWater=Math.max(localW,remoteW);
+        // WeeklyXP today: take max
+        const safeWXP=Math.max((D.weeklyXP&&D.weeklyXP[today])||0,(rd.weeklyXP&&rd.weeklyXP[today])||0);
+        // Quests today: union — keep ticks from both devices
+        const localQ=(D.questsDoneByDate&&D.questsDoneByDate[today])||[];
+        const remoteQ=(rd.questsDoneByDate&&rd.questsDoneByDate[today])||[];
+        const safeQ=[...new Set([...localQ,...remoteQ])];
+        // Only skip if nothing changed
         const remoteTS=rd._lastSaved||0;
         const localTS=D._lastSaved||0;
-        // ALWAYS use most recently saved version — last write wins
-        // This handles unticking quests, water changes, anything
-        // Only skip if local data is newer (this device saved more recently)
-        if(remoteTS<=localTS)return;
-        // Remote is newer — use it, but ALWAYS keep highest XP (never lose XP)
-        const safeXP=Math.max(D.totalXP||0, rd.totalXP||0);
-        const safeMana=Math.max(D.mana||0, rd.mana||0);
+        if(remoteTS<=localTS&&safeXP===(D.totalXP||0)&&safeWater===localW)return;
+        // Merge remote as base then overlay safe values
         D=Object.assign({},DEFAULT,rd);
-        D.totalXP=safeXP;
-        D.mana=safeMana;
+        D.totalXP=safeXP;D.mana=safeMana;D.cleanDays=safeClean;
+        D.streak=safeStreak;D.chessRating=safeChess;
+        D.water=D.water||{};D.water[today]=safeWater;
+        D.weeklyXP=D.weeklyXP||{};D.weeklyXP[today]=safeWXP;
+        D.questsDoneByDate=D.questsDoneByDate||{};D.questsDoneByDate[today]=safeQ;
         // Re-apply daily reset after merge
         const todayNow=getToday();
         if(D.lastActive&&D.lastActive!==todayNow){
@@ -4248,6 +4486,107 @@ function bookAskCustom(){
 }
 
 
+// ── SPECIAL DAYS ──
+const SPECIAL_DAYS={
+  // Format: 'MM-DD'
+  '09-07':{name:'Birthday',emoji:'🎂',msg:"Happy Birthday Karan! 🎂 Today you level up in real life. Take +20 Mana — you earned it just by existing.",mana:20,relaxed:true,confetti:true},
+  '01-01':{name:'New Year',emoji:'🎆',msg:"New Year, same mission ⚡ 365 days ahead. Make every one count. +10 Mana to start the year.",mana:10,relaxed:false,confetti:true},
+  '10-20':{name:'Diwali',emoji:'🪔',msg:"Diwali Mubarak Karan! 🪔 Festival of light — let your discipline shine too. +15 Mana.",mana:15,relaxed:true,confetti:true},
+  '11-01':{name:'Diwali',emoji:'🪔',msg:"Diwali Mubarak Karan! 🪔 Festival of light — let your discipline shine too. +15 Mana.",mana:15,relaxed:true,confetti:true},
+};
+// Also check Sunday
+function _isSpecialDay(){
+  const now=new Date();
+  const mmdd=String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0');
+  if(SPECIAL_DAYS[mmdd])return{...SPECIAL_DAYS[mmdd],type:'fixed'};
+  if(now.getDay()===0)return{name:'Sunday',emoji:'☀️',msg:"Sunday mode activated ☀️ Rest, recharge, and still hit your key quests. +5 Mana.",mana:5,relaxed:true,confetti:false,type:'sunday'};
+  return null;
+}
+
+function _launchConfetti(){
+  const colors=['#6c63ff','#f59e0b','#10b981','#ef4444','#3b82f6','#ec4899','#f97316'];
+  for(let i=0;i<60;i++){
+    setTimeout(()=>{
+      const el=document.createElement('div');
+      el.className='confetti-piece';
+      el.style.left=Math.random()*100+'vw';
+      el.style.background=colors[Math.floor(Math.random()*colors.length)];
+      el.style.width=(6+Math.random()*8)+'px';
+      el.style.height=(6+Math.random()*8)+'px';
+      el.style.borderRadius=Math.random()>0.5?'50%':'2px';
+      el.style.animationDuration=(2+Math.random()*3)+'s';
+      el.style.animationDelay=(Math.random()*2)+'s';
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),6000);
+    },i*40);
+  }
+}
+
+function _showCelebBanner(msg){
+  const existing=document.querySelector('.celeb-banner');
+  if(existing)existing.remove();
+  const el=document.createElement('div');
+  el.className='celeb-banner';
+  el.textContent=msg;
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
+}
+
+function _checkSpecialDay(){
+  const today=getToday();
+  // Only trigger once per day
+  if(D._lastSpecialDay===today)return;
+  const sp=_isSpecialDay();
+  if(!sp)return;
+  D._lastSpecialDay=today;
+  // Give mana bonus
+  if(sp.mana){addMana(sp.mana);save();}
+  // Show banner
+  setTimeout(()=>{
+    _showCelebBanner(sp.emoji+' '+sp.msg);
+    if(sp.confetti)_launchConfetti();
+  },1500);
+}
+
+// ── STREAK MILESTONES ──
+const STREAK_MILESTONES={
+  3:"3 days straight 🔥 The habit is forming.",
+  7:"One full week ⚡ You're not just trying anymore.",
+  14:"14 days 🔥 Two weeks of showing up. Respect.",
+  21:"21 days 💎 Science says habits take 21 days. You're there.",
+  30:"30 days 🏆 One month. Most people quit by day 3.",
+  50:"50 days ⚡ You're in the top 1% of people who actually do what they say.",
+  60:"60 days 🔥 Two months. The streak is part of you now.",
+  75:"75 days 💎 Hard to Kill. You proved it.",
+  90:"90 days 🏆 Three months. New Karan. Old habits are dead.",
+  100:"100 days ⚡ A HUNDRED. Carbon is proud of you bro.",
+  150:"150 days 🔥 You're not human at this point.",
+  180:"180 days 💎 Half a year of winning every single day.",
+  200:"200 days 🏆 200. Say that out loud.",
+  250:"250 days ⚡ Carbon ELO: irrelevant. Your discipline ELO: 2800.",
+  300:"300 days 🔥 300 days. Leonidas energy.",
+  365:"365 days 🏆 ONE FULL YEAR. You actually did it. This is legendary.",
+};
+
+function _checkStreakMilestone(streak){
+  if(!streak||streak<3)return;
+  const msg=STREAK_MILESTONES[streak];
+  if(!msg)return;
+  const key='_smil_'+streak;
+  if(D[key])return; // Already shown
+  D[key]=true;save();
+  setTimeout(()=>{
+    _showCelebBanner('🔥 '+streak+' DAY STREAK — '+msg);
+    if(streak>=7)_launchConfetti();
+    // Extra mana for big milestones
+    if([7,14,30,50,75,100,150,180,200,250,300,365].includes(streak)){
+      const bonus=streak>=100?20:streak>=30?10:5;
+      addMana(bonus);
+      toast('🔥 '+streak+' day streak! +'+bonus+' Mana 💎');
+    }
+  },500);
+}
+
 // ── INIT ──
 function init(){
   loadData();
@@ -4418,33 +4757,44 @@ function _uiSound(type){
     if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
     if(_uiAC.state==='suspended'){_uiAC.resume().then(()=>_uiSound(type));return;}
     const now=_uiAC.currentTime;
+    const theme=(D&&D.soundTheme)||'soft';
+    // 3 sound themes — all soft, just different character
+    // soft: warm low tones (default, like iPhone)
+    // minimal: very subtle barely-there clicks
+    // crisp: slightly brighter, more tactile
+    const THEMES={
+      soft:{nav:[180,90,0.10,0.09],sidebar:[300,200,0.07,0.07],action:[520,440,0.09,0.12],danger:[140,80,0.09,0.11]},
+      minimal:{nav:[160,100,0.05,0.07],sidebar:[220,160,0.04,0.06],action:[400,340,0.05,0.09],danger:[120,70,0.05,0.08]},
+      crisp:{nav:[280,180,0.09,0.07],sidebar:[380,280,0.07,0.06],action:[620,520,0.08,0.10],danger:[180,100,0.08,0.09]}
+    };
+    const t=THEMES[theme]||THEMES.soft;
     const sounds={
-      // Nav tap - soft low thud like iPhone home button feel
+      // Nav: uses theme values
       nav: ()=>{
         const o=_uiAC.createOscillator(),g=_uiAC.createGain();
         o.connect(g);g.connect(_uiAC.destination);
-        o.type='sine';o.frequency.setValueAtTime(180,now);
-        o.frequency.exponentialRampToValueAtTime(90,now+0.08);
-        g.gain.setValueAtTime(0.12,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.09);
-        o.start(now);o.stop(now+0.1);
+        o.type='sine';o.frequency.setValueAtTime(t.nav[0],now);
+        o.frequency.exponentialRampToValueAtTime(t.nav[1],now+t.nav[3]);
+        g.gain.setValueAtTime(t.nav[2],now);g.gain.exponentialRampToValueAtTime(0.001,now+t.nav[3]+0.01);
+        o.start(now);o.stop(now+t.nav[3]+0.02);
       },
-      // Sidebar item - slightly brighter tap
+      // Sidebar: uses theme values
       sidebar: ()=>{
         const o=_uiAC.createOscillator(),g=_uiAC.createGain();
         o.connect(g);g.connect(_uiAC.destination);
-        o.type='sine';o.frequency.setValueAtTime(300,now);
-        o.frequency.exponentialRampToValueAtTime(200,now+0.06);
-        g.gain.setValueAtTime(0.08,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.07);
-        o.start(now);o.stop(now+0.08);
+        o.type='sine';o.frequency.setValueAtTime(t.sidebar[0],now);
+        o.frequency.exponentialRampToValueAtTime(t.sidebar[1],now+t.sidebar[3]);
+        g.gain.setValueAtTime(t.sidebar[2],now);g.gain.exponentialRampToValueAtTime(0.001,now+t.sidebar[3]+0.01);
+        o.start(now);o.stop(now+t.sidebar[3]+0.02);
       },
-      // Action button (Connect, Save, Start) - satisfying confirm click
+      // Action: uses theme values
       action: ()=>{
         const o=_uiAC.createOscillator(),g=_uiAC.createGain();
         o.connect(g);g.connect(_uiAC.destination);
-        o.type='sine';o.frequency.setValueAtTime(520,now);
-        o.frequency.exponentialRampToValueAtTime(440,now+0.05);
-        g.gain.setValueAtTime(0.1,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.12);
-        o.start(now);o.stop(now+0.13);
+        o.type='sine';o.frequency.setValueAtTime(t.action[0],now);
+        o.frequency.exponentialRampToValueAtTime(t.action[1],now+t.action[3]);
+        g.gain.setValueAtTime(t.action[2],now);g.gain.exponentialRampToValueAtTime(0.001,now+t.action[3]+0.02);
+        o.start(now);o.stop(now+t.action[3]+0.03);
       },
       // Quest complete - satisfying double-tap feel
       quest: ()=>{
@@ -4458,14 +4808,14 @@ function _uiSound(type){
           o.start(now+delay);o.stop(now+delay+0.09);
         });
       },
-      // Danger button (red - resign, delete) - lower dull thud
+      // Danger: uses theme values
       danger: ()=>{
         const o=_uiAC.createOscillator(),g=_uiAC.createGain();
         o.connect(g);g.connect(_uiAC.destination);
-        o.type='sine';o.frequency.setValueAtTime(140,now);
-        o.frequency.exponentialRampToValueAtTime(80,now+0.1);
-        g.gain.setValueAtTime(0.1,now);g.gain.exponentialRampToValueAtTime(0.001,now+0.11);
-        o.start(now);o.stop(now+0.12);
+        o.type='sine';o.frequency.setValueAtTime(t.danger[0],now);
+        o.frequency.exponentialRampToValueAtTime(t.danger[1],now+t.danger[3]);
+        g.gain.setValueAtTime(t.danger[2],now);g.gain.exponentialRampToValueAtTime(0.001,now+t.danger[3]+0.01);
+        o.start(now);o.stop(now+t.danger[3]+0.02);
       }
     };
     if(sounds[type])sounds[type]();
