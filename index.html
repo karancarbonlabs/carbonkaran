@@ -73,6 +73,51 @@ html,body{height:100%;overflow:hidden;font-family:var(--fnt,'Nunito',sans-serif)
   --nm:6px 6px 14px #0f0500,-6px -6px 14px #2a1200;--nms:4px 4px 9px #0f0500,-4px -4px 9px #2a1200;--nmxs:2px 2px 6px #0f0500,-2px -2px 6px #2a1200;--nmi:inset 4px 4px 10px #0f0500,inset -4px -4px 10px #2a1200;--nmis:inset 3px 3px 7px #0f0500,inset -3px -3px 7px #2a1200}
 [data-theme="matrix"]{--bg:#000d00;--sd:#000500;--sl:#001800;--txt:#00ff41;--txt2:#00bb30;--txt3:#005515;--a:#00ff41;--a2:#00cc33;--hi:#39ff14;--gr:#00ff41;--rd:#ff4444;--mn:#ffff00;--gd:#ffff00;--tex:rgba(0,255,65,.03);
   --nm:6px 6px 14px #000500,-6px -6px 14px #001800;--nms:4px 4px 9px #000500,-4px -4px 9px #001800;--nmxs:2px 2px 6px #000500,-2px -2px 6px #001800;--nmi:inset 4px 4px 10px #000500,inset -4px -4px 10px #001800;--nmis:inset 3px 3px 7px #000500,inset -3px -3px 7px #001800}
+/* ── ATMOSPHERIC THEMES (inspired by time-of-day moods) ── */
+[data-theme="dawn"]{
+  /* Pre-dawn: deep blue-purple → pink-mauve like panel 1 */
+  --bg:#1a1428;--sd:#110e1e;--sl:#261c38;
+  --txt:#e8d8f0;--txt2:#a890c0;--txt3:#604878;
+  --a:#c060d0;--a2:#9040b0;--hi:#60a0e0;--gd:#e0a030;
+  --gr:#50c080;--rd:#e05060;--org:#d07040;--mn:#8050c0;--tex:rgba(180,80,200,.04);
+  --nm:6px 6px 16px #110e1e,-6px -6px 16px #261c38;
+  --nms:4px 4px 10px #110e1e,-4px -4px 10px #261c38;
+  --nmxs:2px 2px 6px #110e1e,-2px -2px 6px #261c38;
+  --nmi:inset 4px 4px 10px #110e1e,inset -4px -4px 10px #261c38;
+  --nmis:inset 3px 3px 7px #110e1e,inset -3px -3px 7px #261c38}
+[data-theme="noon"]{
+  /* Golden noon: warm amber-gold, sandy light like panel 2 */
+  --bg:#f0e0c0;--sd:#d8c8a8;--sl:#fff8e8;
+  --txt:#1c1008;--txt2:#604820;--txt3:#a08040;
+  --a:#d08020;--a2:#e8a030;--hi:#4090c0;--gd:#c06010;
+  --gr:#408040;--rd:#c03020;--org:#e07020;--mn:#8040a0;--tex:rgba(200,140,20,.05);
+  --nm:7px 7px 18px #d8c8a8,-7px -7px 18px #fff8e8;
+  --nms:5px 5px 12px #d8c8a8,-5px -5px 12px #fff8e8;
+  --nmxs:3px 3px 7px #d8c8a8,-3px -3px 7px #fff8e8;
+  --nmi:inset 4px 4px 10px #d8c8a8,inset -4px -4px 10px #fff8e8;
+  --nmis:inset 3px 3px 7px #d8c8a8,inset -3px -3px 7px #fff8e8}
+[data-theme="dusk"]{
+  /* Magenta dusk: hot pink-purple, like panel 3 */
+  --bg:#1e0828;--sd:#160418;--sl:#2e1038;
+  --txt:#ffd0f0;--txt2:#d060b0;--txt3:#803060;
+  --a:#e030a0;--a2:#c020c0;--hi:#f07030;--gd:#f0c020;
+  --gr:#40c060;--rd:#f03030;--org:#f06020;--mn:#a020d0;--tex:rgba(220,40,160,.05);
+  --nm:6px 6px 14px #160418,-6px -6px 14px #2e1038;
+  --nms:4px 4px 9px #160418,-4px -4px 9px #2e1038;
+  --nmxs:2px 2px 6px #160418,-2px -2px 6px #2e1038;
+  --nmi:inset 4px 4px 10px #160418,inset -4px -4px 10px #2e1038;
+  --nmis:inset 3px 3px 7px #160418,inset -3px -3px 7px #2e1038}
+[data-theme="midnight"]{
+  /* Deep night: rich indigo-violet, like panel 4 */
+  --bg:#0e0820;--sd:#080414;--sl:#18102e;
+  --txt:#c0b0e8;--txt2:#6050a0;--txt3:#302860;
+  --a:#5040c0;--a2:#7060e0;--hi:#a0c0f0;--gd:#f0d040;
+  --gr:#40a060;--rd:#e04050;--org:#d06020;--mn:#9030b0;--tex:rgba(80,60,200,.04);
+  --nm:6px 6px 14px #080414,-6px -6px 14px #18102e;
+  --nms:4px 4px 9px #080414,-4px -4px 9px #18102e;
+  --nmxs:2px 2px 6px #080414,-2px -2px 6px #18102e;
+  --nmi:inset 4px 4px 10px #080414,inset -4px -4px 10px #18102e;
+  --nmis:inset 3px 3px 7px #080414,inset -3px -3px 7px #18102e}
 
 /* ── TEXTURE OVERLAY MIXIN ── */
 .tex::after{content:'';position:absolute;inset:0;background:var(--tex);pointer-events:none;border-radius:inherit;opacity:.7}
@@ -390,6 +435,19 @@ html,body{height:100%;overflow:hidden;font-family:var(--fnt,'Nunito',sans-serif)
 
 /* ── TOAST ── */
 /* ── CONFETTI / SPECIAL DAY ── */
+/* ── SCENE BACKGROUNDS ── */
+.scene-bg{position:absolute;top:0;left:0;width:100%;height:220px;pointer-events:none;z-index:0;overflow:hidden;border-radius:inherit;opacity:0;transition:opacity .5s}
+.scene-bg.visible{opacity:1}
+.scene-bg svg{width:100%;height:100%}
+/* ── BIRDS ── */
+@keyframes birdFlap{0%,100%{transform:scaleX(1) translateY(0)}25%{transform:scaleX(1) translateY(-3px)}50%{transform:scaleX(1) translateY(0)}75%{transform:scaleX(1) translateY(-2px)}}
+@keyframes birdWalk{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+@keyframes birdFly{0%{opacity:1;transform:translate(0,0) scale(1)}100%{opacity:0;transform:translate(var(--fx,60px),var(--fy,-120px)) scale(0.3)}}
+@keyframes owlBlink{0%,90%,100%{transform:scaleY(1)}95%{transform:scaleY(0.1)}}
+.bird-el{position:fixed;font-size:14px;cursor:pointer;z-index:8888;transition:left 2s ease-in-out,top 1.5s ease-in-out;user-select:none;-webkit-user-select:none;animation:birdWalk 1.4s ease-in-out infinite;opacity:0.85;filter:drop-shadow(0 1px 3px rgba(0,0,0,.1))}
+.bird-el.flapping{animation:birdFlap 0.35s ease-in-out infinite}
+.bird-el.flying-away{animation:birdFly 0.7s ease-out forwards}
+.owl-el{position:fixed;font-size:16px;cursor:pointer;z-index:8888;user-select:none;-webkit-user-select:none;animation:owlBlink 5s ease-in-out infinite;opacity:0.8;filter:drop-shadow(0 1px 3px rgba(0,0,0,.15))}
 /* Font size — uses zoom to scale all inline px sizes too */
 body.fs-small #content{zoom:0.88}
 body.fs-large #content{zoom:1.12}
@@ -615,8 +673,8 @@ body.fs-small{font-size:13px}body.fs-large{font-size:17px}
 <script>
 // Pages HTML stored for dynamic injection
 window._PAGES_HTML = `<!-- ALL 31 PAGES -->
-<div id="p-dash" class="page active">
-  <div class="c">
+<div id="p-dash" class="page active" style="position:relative">
+  <div class="c" style="position:relative;z-index:1">
     <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px">
       <div><div id="dash-greet" style="font-family:'Orbitron',monospace;font-size:15px;font-weight:900;color:var(--a)">Good Morning ⚡</div><div id="dash-date" style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-top:3px">--</div><div id="dash-mode-badge" style="margin-top:6px"></div></div>
       <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
@@ -674,7 +732,7 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
 </div>
 
 <!-- QUESTS -->
-<div id="p-quests" class="page">
+<div id="p-quests" class="page" style="position:relative">
   <div class="ph"><div class="ph-t">⚔ QUESTS</div><div class="ph-s" id="q-date-label">--</div></div>
   <div class="c" style="margin-bottom:12px">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;position:relative;z-index:1">
@@ -1667,6 +1725,10 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
       <div style="text-align:center"><div class="thsw" id="th-carbon" style="background:#161616" onclick="setTheme('carbon')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Carbon</div></div>
       <div style="text-align:center"><div class="thsw" id="th-gold" style="background:#1e1800" onclick="setTheme('gold')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Gold</div></div>
       <div style="text-align:center"><div class="thsw" id="th-slate" style="background:#1c2030" onclick="setTheme('slate')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">Slate</div></div>
+      <div style="text-align:center"><div class="thsw" id="th-dawn" style="background:linear-gradient(160deg,#1a1428 0%,#6020a0 50%,#d06090 100%)" onclick="setTheme('dawn')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">🌄 Dawn</div></div>
+      <div style="text-align:center"><div class="thsw" id="th-noon" style="background:linear-gradient(160deg,#f0d880 0%,#f09020 50%,#c05010 100%)" onclick="setTheme('noon')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">☀️ Noon</div></div>
+      <div style="text-align:center"><div class="thsw" id="th-dusk" style="background:linear-gradient(160deg,#1e0828 0%,#c020a0 40%,#f06020 100%)" onclick="setTheme('dusk')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">🌆 Dusk</div></div>
+      <div style="text-align:center"><div class="thsw" id="th-midnight" style="background:linear-gradient(160deg,#0e0820 0%,#2820a0 50%,#5040c0 100%)" onclick="setTheme('midnight')"></div><div style="font-family:'JetBrains Mono',monospace;font-size:7px;color:var(--txt3);margin-top:4px">🌙 Midnight</div></div>
     </div>
     <!-- Secret Themes -->
     <div id="secret-themes-section" style="display:none;margin-top:14px;border-top:1px solid var(--sl);padding-top:14px">
@@ -1715,6 +1777,29 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
       <button id="snd-crisp" onclick="setSoundTheme('crisp')" style="flex:1;padding:10px 6px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;cursor:pointer;background:var(--bg);color:var(--txt3);box-shadow:var(--nms)">● Crisp</button>
     </div>
   </div>
+  <!-- Birds -->
+  <div class="c">
+    <div class="ch">🐦 Birds & 🦉 Owl</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div><div style="font-size:13px;font-weight:700;color:var(--txt)">Show Birds & Owl</div><div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-top:2px">Tap them to shoo away · They return in 2-5 min</div></div>
+      <button id="birds-toggle-btn" onclick="toggleBirds()" style="padding:8px 18px;border-radius:12px;border:none;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;cursor:pointer;background:var(--a);color:#fff">ON</button>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-bottom:8px;letter-spacing:1px">🐦 MORNING BIRDS — appear between:</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+      <input id="bird-m-start" type="number" min="0" max="23" value="5" style="flex:1;padding:8px;border-radius:10px;background:var(--bg);box-shadow:var(--nms);border:none;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center">
+      <span style="color:var(--txt3);font-size:10px">to</span>
+      <input id="bird-m-end" type="number" min="0" max="23" value="9" style="flex:1;padding:8px;border-radius:10px;background:var(--bg);box-shadow:var(--nms);border:none;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center">
+      <span style="color:var(--txt3);font-size:9px">hour (0-23)</span>
+    </div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-bottom:8px;letter-spacing:1px">🦉 NIGHT OWL — appear between:</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+      <input id="bird-n-start" type="number" min="0" max="23" value="22" style="flex:1;padding:8px;border-radius:10px;background:var(--bg);box-shadow:var(--nms);border:none;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center">
+      <span style="color:var(--txt3);font-size:10px">to</span>
+      <input id="bird-n-end" type="number" min="0" max="23" value="3" style="flex:1;padding:8px;border-radius:10px;background:var(--bg);box-shadow:var(--nms);border:none;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:center">
+      <span style="color:var(--txt3);font-size:9px">hour (0-23)</span>
+    </div>
+    <button onclick="saveBirdSchedule()" class="btn-a" style="width:100%;padding:10px">Save Schedule</button>
+  </div>
   <!-- Effects & Ripple -->
   <div class="c">
     <div class="ch">✨ Effects</div>
@@ -1755,6 +1840,13 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
       <input id="wake-time-inp" type="time" value="07:00" style="flex:1;padding:10px;border-radius:12px;background:var(--bg);box-shadow:var(--nms);border:none;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:13px">
       <button onclick="saveWakeTime()" class="btn-a" style="padding:10px 16px">Save</button>
     </div>
+  </div>
+  <!-- Quest Order -->
+  <div class="c">
+    <div class="ch">📋 Quest Order</div>
+    <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);margin-bottom:10px">Drag ▲▼ to reorder your daily quests</div>
+    <div id="quest-reorder-list"></div>
+    <button onclick="resetQuestOrder()" style="margin-top:8px;width:100%;padding:10px;border-radius:12px;background:var(--bg);box-shadow:var(--nms);border:none;color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:9px;cursor:pointer">Reset to Default Order</button>
   </div>
   <!-- Water Goal -->
   <div class="c">
@@ -1826,7 +1918,7 @@ window._PAGES_HTML = `<!-- ALL 31 PAGES -->
 // Data · Nav · XP · Quests · Clock · Dashboard
 // ═══════════════════════════════════
 
-const DEFAULT={xp:0,streak:0,cleanDays:0,lastActive:null,lastSQClean:null,lastStreakDate:null,questsDoneByDate:{},chessRating:600,chessLog:[],chessGames:[],chessWinsToday:0,chessLastDate:null,chessLevel:'easy',expenses:[],vocab:[],notes:[],wins:{},water:{},weeklyXP:{},journal:[],journalPIN:null,appPIN:null,sqPIN:null,theme:'light',font:'Nunito',userName:'Karan Singh',breathCycles:0,breathSecs:0,vocalSessions:0,vocalStreak:0,vocalLastDate:null,customQuests:[],mathBest:0,mathTimes:[],mathHistory:[],shadowLog:[],mana:1700,rank:'E',totalXP:0,weeklyCode:null,guitarSessions:0,guitarStreak:0,guitarLastDate:null,guitarLog:[],brainBest:0,brainHistory:[],analyticsProgress:{},mode:'normal',metroBpm:120,workoutLog:{},workoutStreak:0,workoutLastDate:null,weight:62,manaItems:[],notifs:{enabled:true,morning:true,evening:true,sq:true},firebaseConfig:null,battleActive:false,battleStart:null,sqBestStreak:0,chatHistory:[],brainSpeed:2,freshStartUses:{},freshStartExtra:{},books:[],pomLog:[],pomLastSubject:"",vocabWeights:{},soundTheme:'soft',rippleEffect:true,celebEffects:true,btnPressStyle:'gold',fontSize:'medium',wakeTime:'07:00',waterGoal:12};
+const DEFAULT={xp:0,streak:0,cleanDays:0,lastActive:null,lastSQClean:null,lastStreakDate:null,questsDoneByDate:{},chessRating:600,chessLog:[],chessGames:[],chessWinsToday:0,chessLastDate:null,chessLevel:'easy',expenses:[],vocab:[],notes:[],wins:{},water:{},weeklyXP:{},journal:[],journalPIN:null,appPIN:null,sqPIN:null,theme:'light',font:'Nunito',userName:'Karan Singh',breathCycles:0,breathSecs:0,vocalSessions:0,vocalStreak:0,vocalLastDate:null,customQuests:[],mathBest:0,mathTimes:[],mathHistory:[],shadowLog:[],mana:1700,rank:'E',totalXP:0,weeklyCode:null,guitarSessions:0,guitarStreak:0,guitarLastDate:null,guitarLog:[],brainBest:0,brainHistory:[],analyticsProgress:{},mode:'normal',metroBpm:120,workoutLog:{},workoutStreak:0,workoutLastDate:null,weight:62,manaItems:[],notifs:{enabled:true,morning:true,evening:true,sq:true},firebaseConfig:null,battleActive:false,battleStart:null,sqBestStreak:0,chatHistory:[],brainSpeed:2,freshStartUses:{},freshStartExtra:{},books:[],pomLog:[],pomLastSubject:"",vocabWeights:{},soundTheme:'soft',rippleEffect:true,celebEffects:true,btnPressStyle:'gold',fontSize:'medium',wakeTime:'07:00',waterGoal:12,birdsEnabled:true,questOrder:null,birdSchedule:{morningStart:5,morningEnd:9,nightStart:22,nightEnd:3}};
 
 let D={};
 let firebaseApp2=null,firebaseRef=null,saveTimer=null,currentPage='dash';
@@ -2020,7 +2112,7 @@ function updateStreak(){
 
 function filterQuests(type,btn){document.querySelectorAll('#p-quests .tabs .tab').forEach(t=>t.classList.remove('on'));if(btn)btn.classList.add('on');renderQuestList(type);}
 function renderQuestList(filter='all'){
-  const done=todayDone();const all=[...CORE_QUESTS,...(D.customQuests||[]).map(q=>({...q,id:'cq_'+q.id}))];
+  const done=todayDone();const all=getOrderedQuests();
   const el=document.getElementById('quest-list');if(!el)return;el.innerHTML='';
   let count=0;
   all.forEach(q=>{const isDone=done.includes(q.id);if(filter==='done'&&!isDone)return;if(filter==='pending'&&isDone)return;count++;
@@ -3756,7 +3848,7 @@ async function sendChat(){
   const vocabToday=(D.vocab||[]).filter(v=>v.date===today).length;
   const expenseToday=(D.expenses||[]).filter(e=>e.date===today).reduce((s,e)=>s+e.amount,0);
 
-  const systemPrompt=`You are Carbon — Karan Singh's brutally honest, no-BS AI life coach. You are embedded in his personal life OS. You have FULL access to his real-time data.
+  const systemPrompt=`You are Carbon — Karan Singh's brutally honest personal AI. You are embedded in his life OS. You know everything about him. Be sharp, direct, personal. Never generic. Max 3-4 sentences unless he asks for more.
 
 === KARAN'S LIVE DATA ===
 Name: Karan Singh | Age: 25 | Location: Kanpur, UP
@@ -3775,13 +3867,15 @@ Today's quests DONE (${done.length}/15): ${todayQuests}
 MISSED quests: ${missedQuests}
 Shadow Quest log: ${(D.shadowLog||[]).length} clean days total
 
-=== HIS GOALS ===
-Chess: 600 → 2000 ELO
-Spanish: fluency (Airlearn daily)
-Business: web+ads clients, SMM reselling
-Body: recomp (workout daily, eat clean)
-Sleep: 7 hours, phone away 10:30 PM
-System: hit S+ rank (150,000 XP) in ~9 months
+=== KARAN'S BACKGROUND ===
+KIT Kanpur, AIML 3rd Year student. GF: Shreya. Obsessed with chess, discipline, building something real.
+Chess: ${D.chessRating||600} ELO → goal 2000
+Shadow Quest: ${D.cleanDays||0} clean days — this is his most important metric
+Building: web agency, cold DMs, SMM
+Body: daily workout, clean eating, recomp
+Sleep: 10:30 PM phone away, wake ${D.wakeTime||'07:00'}
+
+=== HIS GOALS === hit S+ rank (150,000 XP) in ~9 months
 
 === YOUR COACHING STYLE ===
 - Direct and honest. Short sentences. No fluff.
@@ -4001,7 +4095,7 @@ function buyFreshUse(){
 }
 
 // ── SETTINGS ──
-function renderSettings(){renderNotifToggle();renderSoundTheme();renderSettingsToggles();
+function renderSettings(){renderNotifToggle();renderSoundTheme();renderSettingsToggles();renderQuestReorder();
   // Show/hide secret themes based on unlock status
   const sec=document.getElementById('secret-themes-section');
   const locked=document.getElementById('secret-themes-locked');
@@ -4027,6 +4121,48 @@ function renderSettings(){renderNotifToggle();renderSoundTheme();renderSettingsT
   if(firebaseRef){if(fdot)fdot.style.background='var(--gr)';if(fstat)fstat.textContent='Connected ✓ · Real-time sync active';}
   else{if(fdot)fdot.style.background='var(--rd)';if(fstat)fstat.textContent='Not connected · localStorage only';}
 }
+// ── CUSTOM QUEST ORDER ──
+function getOrderedQuests(){
+  const all=[...CORE_QUESTS,...(D.customQuests||[]).map(q=>({...q,id:'cq_'+q.id}))];
+  if(!D.questOrder||D.questOrder.length===0)return all;
+  // Apply saved order
+  const ordered=[];
+  D.questOrder.forEach(id=>{const q=all.find(q=>q.id===id);if(q)ordered.push(q);});
+  // Add any new quests not in order
+  all.forEach(q=>{if(!ordered.find(o=>o.id===q.id))ordered.push(q);});
+  return ordered;
+}
+function renderQuestReorder(){
+  const el=document.getElementById('quest-reorder-list');
+  if(!el)return;
+  const quests=getOrderedQuests();
+  el.innerHTML=quests.map((q,i)=>`
+    <div id="qro-${q.id}" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg);border-radius:12px;box-shadow:var(--nms);margin-bottom:6px;cursor:grab">
+      <span style="font-size:16px">${q.icon||'✨'}</span>
+      <span style="flex:1;font-size:12px;font-weight:700;color:var(--txt)">${q.name}</span>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <button onclick="moveQuest('${q.id}',-1)" style="background:var(--bg);border:none;box-shadow:var(--nmxs);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;color:var(--txt2)">▲</button>
+        <button onclick="moveQuest('${q.id}',1)" style="background:var(--bg);border:none;box-shadow:var(--nmxs);border-radius:6px;padding:3px 8px;cursor:pointer;font-size:10px;color:var(--txt2)">▼</button>
+      </div>
+    </div>`).join('');
+}
+function moveQuest(id,dir){
+  const quests=getOrderedQuests();
+  const idx=quests.findIndex(q=>q.id===id);
+  if(idx===-1)return;
+  const newIdx=idx+dir;
+  if(newIdx<0||newIdx>=quests.length)return;
+  const tmp=quests[idx];quests[idx]=quests[newIdx];quests[newIdx]=tmp;
+  D.questOrder=quests.map(q=>q.id);
+  save();renderQuestReorder();
+  toast('Quest order saved ✓');
+}
+function resetQuestOrder(){
+  D.questOrder=null;save();
+  renderQuestReorder();
+  toast('Quest order reset to default ✓');
+}
+
 // ── FONT SIZE ──
 function setFontSize(size){
   D.fontSize=size;save();
@@ -4232,6 +4368,14 @@ function saveWaterGoal(){
 }
 
 function renderSettingsToggles(){
+  // Birds
+  const bb=document.getElementById('birds-toggle-btn');
+  if(bb){bb.textContent=D.birdsEnabled===false?'OFF':'ON';bb.style.background=D.birdsEnabled===false?'var(--sd)':'var(--a)';bb.style.color=D.birdsEnabled===false?'var(--txt3)':'#fff';}
+  const bs=D.birdSchedule||{morningStart:5,morningEnd:9,nightStart:22,nightEnd:3};
+  const bms=document.getElementById('bird-m-start');if(bms)bms.value=bs.morningStart;
+  const bme=document.getElementById('bird-m-end');if(bme)bme.value=bs.morningEnd;
+  const bns=document.getElementById('bird-n-start');if(bns)bns.value=bs.nightStart;
+  const bne=document.getElementById('bird-n-end');if(bne)bne.value=bs.nightEnd;
   // Button Press Style
   renderBtnPressStyle();
   // Ripple
@@ -4253,6 +4397,7 @@ function renderSettingsToggles(){
 function setTheme(t){
   D.theme=t;document.body.setAttribute('data-theme',t);save();
   document.querySelectorAll('.thsw').forEach(sw=>sw.classList.toggle('on',sw.id==='th-'+t));
+  _applySceneBg();
   toast('Theme: '+t);
 }
 function saveProfile(){
@@ -4632,7 +4777,7 @@ function renderPomLog(){
 
 // ── BOOK TRACKER ──
 let bkCoverB64=null;
-function renderBooks(){
+function renderBooks(){renderBookChat();
   const books=D.books||[];
   const current=books.find(b=>!b.finished&&!b.paused);
   renderBkCurrent(current);
@@ -4831,18 +4976,38 @@ async function bookAsk(question){
   const current=books.find(b=>!b.finished&&!b.paused);
   if(!current){toast('Add a book first');return;}
   const el=document.getElementById('book-ai-resp');
-  if(el){el.style.display='block';el.textContent='Carbon is thinking...';}
+  if(el){el.style.display='block';el.innerHTML='<div style="opacity:.5;font-size:9px">Carbon thinking...</div>';}
   try{
     const resp=await fetch('https://text.pollinations.ai/openai',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({model:'openai',max_tokens:150,messages:[
-        {role:'system',content:'You are Carbon, Karan\'s AI coach. Be direct. Max 3 sentences.'},
+      body:JSON.stringify({model:'openai',max_tokens:200,messages:[
+        {role:'system',content:'You are Carbon, Karan\'s AI coach. Be direct, sharp, personal. Max 4 sentences.'},
         {role:'user',content:'I am reading "'+current.title+'" by '+(current.author||'unknown')+'. I have read '+current.pagesRead+' of '+current.totalPages+' pages. '+question}
       ]})
     });
     const d=await resp.json();
-    if(el)el.textContent=d.choices?.[0]?.message?.content||'Keep reading. Take notes on the key ideas.';
-  }catch(e){if(el)el.textContent='Connection issue. Try again.';}
+    const answer=d.choices?.[0]?.message?.content||'Keep reading. Take notes on the key ideas.';
+    // Store with date — auto-deletes after 1 day
+    D.bookChatLog=D.bookChatLog||[];
+    D.bookChatLog.push({q:question.slice(0,60),a:answer,date:getToday(),time:Date.now()});
+    // Keep only today's messages (auto-delete yesterday's)
+    D.bookChatLog=D.bookChatLog.filter(m=>m.date===getToday());
+    save();
+    renderBookChat();
+  }catch(e){if(el){el.style.display='block';el.innerHTML='<div style="color:var(--rd);font-size:10px">Connection issue. Try again.</div>';}}}
+
+function renderBookChat(){
+  const el=document.getElementById('book-ai-resp');
+  if(!el)return;
+  // Clean old messages (not today)
+  D.bookChatLog=(D.bookChatLog||[]).filter(m=>m.date===getToday());
+  if(D.bookChatLog.length===0){el.style.display='none';return;}
+  el.style.display='block';
+  el.innerHTML=D.bookChatLog.map(m=>`
+    <div style="margin-bottom:10px;padding:8px;border-radius:10px;background:var(--sd)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--a);margin-bottom:4px">You: ${m.q}</div>
+      <div style="font-size:11px;color:var(--txt);line-height:1.7">${m.a}</div>
+    </div>`).join('');
 }
 function bookAskCustom(){
   const q=(document.getElementById('book-ask-inp')||{}).value.trim();
@@ -5138,67 +5303,69 @@ function _effectDarkThunder(){
 
 // Thunder/Lightning effect — chess win, full quests
 function _effectThunder(){
+  // Anime-style dramatic lightning bolt from sky
+  const overlay=document.createElement('div');
+  overlay.style=`position:fixed;inset:0;pointer-events:none;z-index:9994;overflow:hidden`;
+  document.body.appendChild(overlay);
+
+  // White flash — instant screen white
+  const flash=document.createElement('div');
+  flash.style=`position:fixed;inset:0;background:white;opacity:0;pointer-events:none;z-index:9995;transition:opacity .05s`;
+  document.body.appendChild(flash);
+
+  // Zigzag lightning bolt SVG from top to bottom
+  const bolt=document.createElement('div');
+  const x=30+Math.random()*40; // random horizontal position
+  bolt.style=`position:fixed;top:0;left:${x}vw;pointer-events:none;z-index:9996;opacity:0;transform:scaleY(0);transform-origin:top center;transition:transform .12s ease-out,opacity .05s`;
+  bolt.innerHTML=`<svg width="60" height="${window.innerHeight}" viewBox="0 0 60 ${window.innerHeight}" xmlns="http://www.w3.org/2000/svg">
+    <filter id="glow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <polyline points="30,0 10,${window.innerHeight*.25} 40,${window.innerHeight*.35} 5,${window.innerHeight*.6} 35,${window.innerHeight*.7} 15,${window.innerHeight}" 
+      stroke="white" stroke-width="4" fill="none" filter="url(#glow)" stroke-linecap="round"/>
+    <polyline points="30,0 10,${window.innerHeight*.25} 40,${window.innerHeight*.35} 5,${window.innerHeight*.6} 35,${window.innerHeight*.7} 15,${window.innerHeight}" 
+      stroke="#a78bfa" stroke-width="2" fill="none" filter="url(#glow)" stroke-linecap="round"/>
+  </svg>`;
+  document.body.appendChild(bolt);
+
+  // Dark background flash
+  const dark=document.createElement('div');
+  dark.style=`position:fixed;inset:0;background:rgba(0,0,30,.6);pointer-events:none;z-index:9993;opacity:0;transition:opacity .1s`;
+  document.body.appendChild(dark);
+
+  // Thunder sound — deep crack + rumble
   try{
     if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
     if(_uiAC.state==='suspended')_uiAC.resume();
     const now=_uiAC.currentTime;
-    // Thunder rumble — noise burst
-    const bufSize=_uiAC.sampleRate*0.4;
-    const buf=_uiAC.createBuffer(1,bufSize,_uiAC.sampleRate);
-    const data=buf.getChannelData(0);
-    for(let i=0;i<bufSize;i++)data[i]=(Math.random()*2-1)*Math.pow(1-i/bufSize,0.5);
-    const src=_uiAC.createBufferSource();
-    src.buffer=buf;
-    const g=_uiAC.createGain();
-    g.gain.setValueAtTime(0.4,now);
-    g.gain.exponentialRampToValueAtTime(0.001,now+0.4);
-    src.connect(g);g.connect(_uiAC.destination);
-    src.start(now);
-    // Lightning flash
-    const flash=document.createElement('div');
-    flash.style=`position:fixed;inset:0;background:rgba(180,180,255,.35);z-index:9998;pointer-events:none;animation:none`;
-    document.body.appendChild(flash);
-    setTimeout(()=>{flash.style.background='rgba(180,180,255,.15)';},60);
-    setTimeout(()=>{flash.style.background='rgba(180,180,255,.3)';},120);
-    setTimeout(()=>{flash.style.background='transparent';},200);
-    setTimeout(()=>flash.remove(),300);
+    // Sharp crack
+    const crackBuf=_uiAC.createBuffer(1,Math.floor(_uiAC.sampleRate*.05),_uiAC.sampleRate);
+    const crackData=crackBuf.getChannelData(0);
+    for(let i=0;i<crackData.length;i++)crackData[i]=(Math.random()*2-1)*Math.pow(1-i/crackData.length,0.3);
+    const crack=_uiAC.createBufferSource();
+    crack.buffer=crackBuf;
+    const cg=_uiAC.createGain();cg.gain.setValueAtTime(0.8,now);cg.gain.exponentialRampToValueAtTime(0.001,now+0.05);
+    crack.connect(cg);cg.connect(_uiAC.destination);crack.start(now);
+    // Rumble after crack
+    const rumbleBuf=_uiAC.createBuffer(1,Math.floor(_uiAC.sampleRate*.8),_uiAC.sampleRate);
+    const rumbleData=rumbleBuf.getChannelData(0);
+    for(let i=0;i<rumbleData.length;i++)rumbleData[i]=(Math.random()*2-1)*Math.pow(1-i/rumbleData.length,0.4)*0.4;
+    const rumble=_uiAC.createBufferSource();
+    rumble.buffer=rumbleBuf;
+    const rg=_uiAC.createGain();rg.gain.setValueAtTime(0.35,now+0.05);rg.gain.exponentialRampToValueAtTime(0.001,now+0.85);
+    rumble.connect(rg);rg.connect(_uiAC.destination);rumble.start(now+0.05);
   }catch(e){}
+
+  // Animate sequence — anime style
+  setTimeout(()=>{dark.style.opacity='1';},0);                    // dark bg
+  setTimeout(()=>{bolt.style.opacity='1';bolt.style.transform='scaleY(1)';},80); // bolt strikes
+  setTimeout(()=>{flash.style.opacity='0.9';},100);               // white flash
+  setTimeout(()=>{flash.style.opacity='0';},160);                 // flash fades
+  setTimeout(()=>{flash.style.opacity='0.5';},200);               // second flash
+  setTimeout(()=>{flash.style.opacity='0';},280);                 // fades again
+  setTimeout(()=>{bolt.style.opacity='0.3';},350);                // bolt dims
+  setTimeout(()=>{dark.style.opacity='0';bolt.style.opacity='0';},600); // all fades
+  setTimeout(()=>{overlay.remove();flash.remove();bolt.remove();dark.remove();},800);
 }
 
-// Fire effect — all quests done
-function _effectFire(){
-  try{
-    if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
-    if(_uiAC.state==='suspended')_uiAC.resume();
-    const now=_uiAC.currentTime;
-    // Rising triumphant sound
-    [261,329,392,523,659,784].forEach((f,i)=>{
-      const o=_uiAC.createOscillator(),g=_uiAC.createGain();
-      o.connect(g);g.connect(_uiAC.destination);
-      o.type='triangle';
-      o.frequency.setValueAtTime(f,now+i*0.08);
-      g.gain.setValueAtTime(0.12,now+i*0.08);
-      g.gain.exponentialRampToValueAtTime(0.001,now+i*0.08+0.2);
-      o.start(now+i*0.08);o.stop(now+i*0.08+0.21);
-    });
-  }catch(e){}
-  // Fire particles rising from bottom
-  const colors=['#f97316','#ef4444','#fbbf24','#fb923c','#fde68a'];
-  for(let i=0;i<50;i++){
-    setTimeout(()=>{
-      const el=document.createElement('div');
-      el.style=`position:fixed;bottom:80px;left:${10+Math.random()*80}vw;width:${6+Math.random()*8}px;height:${10+Math.random()*16}px;background:${colors[Math.floor(Math.random()*colors.length)]};border-radius:50% 50% 20% 20%;pointer-events:none;z-index:9997;animation:confettiFall ${0.8+Math.random()*0.8}s ease-out forwards;transform-origin:center bottom`;
-      el.style.animationName='fireRise';
-      document.body.appendChild(el);
-      setTimeout(()=>el.remove(),2000);
-    },i*30);
-  }
-  // Big banner
-  _showCelebBanner('🔥 ALL QUESTS DONE! LEGENDARY DAY ⚡');
-  setTimeout(()=>_launchConfetti(),300);
-}
-
-// Math 7-streak effect
 function _effectMathStreak(){
   try{
     if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
@@ -5231,6 +5398,361 @@ function _effectMathStreak(){
   }
 }
 
+// ── SCENE BACKGROUNDS ──
+const SCENES={
+  dawn:`<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sdawn" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#0d0820"/>
+        <stop offset="40%" stop-color="#3d1560"/>
+        <stop offset="70%" stop-color="#9b3080"/>
+        <stop offset="100%" stop-color="#d4607a"/>
+      </linearGradient>
+      <radialGradient id="gdawn" cx="30%" cy="80%" r="40%">
+        <stop offset="0%" stop-color="#ff90a0" stop-opacity=".5"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </radialGradient>
+    </defs>
+    <rect width="400" height="220" fill="url(#sdawn)"/>
+    <rect width="400" height="220" fill="url(#gdawn)"/>
+    <!-- Mountains far -->
+    <path d="M0,160 L60,80 L120,120 L180,60 L240,100 L300,50 L360,90 L400,70 L400,220 L0,220Z" fill="#1a0a30" opacity=".8"/>
+    <!-- Mountains near -->
+    <path d="M0,180 L80,120 L140,150 L200,100 L260,140 L320,110 L400,130 L400,220 L0,220Z" fill="#0d0618" opacity=".9"/>
+    <!-- Bridge/arch -->
+    <path d="M60,200 Q90,185 120,200 M130,200 Q160,185 190,200" stroke="#1a0830" stroke-width="3" fill="none" opacity=".6"/>
+    <!-- Glow at horizon -->
+    <ellipse cx="160" cy="200" rx="80" ry="20" fill="#ff6080" opacity=".2"/>
+    <!-- Stars -->
+    <circle cx="300" cy="30" r="1" fill="white" opacity=".8"/>
+    <circle cx="340" cy="15" r="1.5" fill="white" opacity=".6"/>
+    <circle cx="270" cy="45" r="1" fill="white" opacity=".7"/>
+    <circle cx="380" cy="35" r="1" fill="white" opacity=".5"/>
+    <circle cx="250" cy="20" r="1" fill="white" opacity=".8"/>
+  </svg>`,
+
+  noon:`<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="snoon" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#4a90d9"/>
+        <stop offset="35%" stop-color="#f5c842"/>
+        <stop offset="65%" stop-color="#e8902a"/>
+        <stop offset="100%" stop-color="#c06020"/>
+      </linearGradient>
+      <radialGradient id="gnoon" cx="50%" cy="35%" r="30%">
+        <stop offset="0%" stop-color="#fffde0" stop-opacity=".9"/>
+        <stop offset="50%" stop-color="#f5c842" stop-opacity=".4"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </radialGradient>
+    </defs>
+    <rect width="400" height="220" fill="url(#snoon)"/>
+    <rect width="400" height="220" fill="url(#gnoon)"/>
+    <!-- Sun -->
+    <circle cx="200" cy="72" r="22" fill="#fffde0" opacity=".95"/>
+    <circle cx="200" cy="72" r="35" fill="#f5c842" opacity=".25"/>
+    <circle cx="200" cy="72" r="50" fill="#f0a830" opacity=".12"/>
+    <!-- Mountain peak -->
+    <path d="M100,220 L200,60 L300,220Z" fill="#c8903a" opacity=".7"/>
+    <path d="M140,220 L200,80 L260,220Z" fill="#d4a050" opacity=".5"/>
+    <!-- Ground -->
+    <path d="M0,190 Q100,170 200,185 Q300,200 400,175 L400,220 L0,220Z" fill="#805020" opacity=".6"/>
+    <!-- Bridge -->
+    <path d="M60,205 Q90,190 120,205 Q150,190 180,205 Q210,190 240,205" stroke="#604010" stroke-width="4" fill="none" opacity=".7"/>
+    <rect x="55" y="195" width="8" height="25" fill="#604010" opacity=".7"/>
+    <rect x="115" y="195" width="8" height="25" fill="#604010" opacity=".7"/>
+    <rect x="175" y="195" width="8" height="25" fill="#604010" opacity=".7"/>
+    <rect x="235" y="195" width="8" height="25" fill="#604010" opacity=".7"/>
+    <!-- Train suggestion -->
+    <rect x="130" y="192" width="60" height="12" rx="4" fill="#4080c0" opacity=".6"/>
+  </svg>`,
+
+  dusk:`<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="sdusk" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#1a0828"/>
+        <stop offset="30%" stop-color="#8b1a8b"/>
+        <stop offset="60%" stop-color="#e0308a"/>
+        <stop offset="85%" stop-color="#f06030"/>
+        <stop offset="100%" stop-color="#c03010"/>
+      </linearGradient>
+      <radialGradient id="gdusk" cx="70%" cy="75%" r="35%">
+        <stop offset="0%" stop-color="#ff8040" stop-opacity=".7"/>
+        <stop offset="60%" stop-color="#f04080" stop-opacity=".2"/>
+        <stop offset="100%" stop-color="transparent"/>
+      </radialGradient>
+    </defs>
+    <rect width="400" height="220" fill="url(#sdusk)"/>
+    <rect width="400" height="220" fill="url(#gdusk)"/>
+    <!-- Sun setting -->
+    <circle cx="280" cy="162" r="20" fill="#ffb040" opacity=".8"/>
+    <circle cx="280" cy="162" r="35" fill="#ff7030" opacity=".2"/>
+    <!-- Stars appearing -->
+    <circle cx="80" cy="30" r="1" fill="white" opacity=".6"/>
+    <circle cx="150" cy="20" r="1.5" fill="white" opacity=".5"/>
+    <circle cx="50" cy="50" r="1" fill="white" opacity=".4"/>
+    <!-- Hills -->
+    <path d="M0,155 Q80,110 160,145 Q240,110 320,140 Q360,125 400,135 L400,220 L0,220Z" fill="#2a0840" opacity=".85"/>
+    <path d="M0,175 Q60,155 130,170 Q200,155 270,168 Q340,155 400,162 L400,220 L0,220Z" fill="#1a0420" opacity=".9"/>
+    <!-- Lens flare -->
+    <ellipse cx="280" cy="162" rx="60" ry="5" fill="#ff9040" opacity=".15" transform="rotate(-20,280,162)"/>
+    <ellipse cx="240" cy="155" rx="20" ry="3" fill="#ff6020" opacity=".2" transform="rotate(-20,240,155)"/>
+  </svg>`,
+
+  midnight:`<svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="smid" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#050318"/>
+        <stop offset="50%" stop-color="#0d0840"/>
+        <stop offset="100%" stop-color="#1a1060"/>
+      </linearGradient>
+    </defs>
+    <rect width="400" height="220" fill="url(#smid)"/>
+    <!-- Stars many -->
+    <circle cx="40" cy="20" r="1" fill="white" opacity=".9"/>
+    <circle cx="80" cy="35" r="1.5" fill="white" opacity=".7"/>
+    <circle cx="130" cy="15" r="1" fill="white" opacity=".8"/>
+    <circle cx="170" cy="45" r="1" fill="white" opacity=".6"/>
+    <circle cx="220" cy="25" r="1.5" fill="white" opacity=".9"/>
+    <circle cx="260" cy="40" r="1" fill="white" opacity=".7"/>
+    <circle cx="300" cy="18" r="1" fill="white" opacity=".8"/>
+    <circle cx="350" cy="30" r="1.5" fill="white" opacity=".6"/>
+    <circle cx="380" cy="12" r="1" fill="white" opacity=".9"/>
+    <circle cx="60" cy="55" r="1" fill="white" opacity=".5"/>
+    <circle cx="190" cy="60" r="1" fill="white" opacity=".6"/>
+    <circle cx="320" cy="55" r="1" fill="white" opacity=".7"/>
+    <!-- Moon crescent -->
+    <circle cx="330" cy="45" r="18" fill="#d0c8f0" opacity=".9"/>
+    <circle cx="338" cy="40" r="16" fill="#0d0840"/>
+    <!-- Windmill silhouette -->
+    <rect x="188" y="120" width="8" height="80" fill="#0a0630" opacity=".9"/>
+    <rect x="178" y="130" width="28" height="12" rx="2" fill="#0a0630" opacity=".9"/>
+    <!-- Windmill blades -->
+    <line x1="192" y1="122" x2="192" y2="82" stroke="#0d0840" stroke-width="3" opacity=".8"/>
+    <line x1="192" y1="122" x2="222" y2="135" stroke="#0d0840" stroke-width="3" opacity=".8"/>
+    <line x1="192" y1="122" x2="162" y2="135" stroke="#0d0840" stroke-width="3" opacity=".8"/>
+    <!-- Window glow -->
+    <rect x="186" y="148" width="12" height="10" rx="2" fill="#f0e040" opacity=".7"/>
+    <!-- Ground silhouette -->
+    <path d="M0,185 Q50,175 100,182 Q150,175 200,180 Q280,170 350,178 Q380,172 400,175 L400,220 L0,220Z" fill="#050315" opacity=".95"/>
+    <!-- Trees -->
+    <path d="M20,185 L28,160 L36,185Z" fill="#050315" opacity=".8"/>
+    <path d="M360,180 L368,155 L376,180Z" fill="#050315" opacity=".8"/>
+  </svg>`
+};
+
+function _applySceneBg(){
+  const theme=D.theme||'light';
+  const scenePages=['p-dash','p-quests'];
+  scenePages.forEach(pid=>{
+    const page=document.getElementById(pid);
+    if(!page)return;
+    // Remove existing scene
+    const old=page.querySelector('.scene-bg');
+    if(old)old.remove();
+    // Add scene if atmospheric theme
+    if(SCENES[theme]){
+      const scene=document.createElement('div');
+      scene.className='scene-bg';
+      scene.innerHTML=SCENES[theme];
+      page.insertBefore(scene,page.firstChild);
+      requestAnimationFrame(()=>scene.classList.add('visible'));
+    }
+  });
+  // Make page content readable over scene
+  const pages=document.querySelectorAll('#p-dash,#p-quests');
+  pages.forEach(p=>{
+    const hasScene=!!(SCENES[theme]);
+    p.style.position=hasScene?'relative':'';
+  });
+}
+
+// ── BIRD SYSTEM ──
+let _birds=[];
+let _birdTimer=null;
+let _birdReturnTimers=[];
+
+const BIRD_EMOJIS=['🐦','🐦','🐤'];
+const NAV_POSITIONS=[
+  ()=>({x:8,y:window.innerHeight-72}),   // Home button area
+  ()=>({x:window.innerWidth*.25-22,y:window.innerHeight-72}), // Quests
+  ()=>({x:window.innerWidth*.5-22,y:window.innerHeight-72}),  // Carbon
+  ()=>({x:window.innerWidth*.75-22,y:window.innerHeight-72}), // More
+];
+const ROAM_POSITIONS=[
+  ()=>({x:Math.random()*(window.innerWidth-60)+10,y:60+Math.random()*80}),      // top area
+  ()=>({x:Math.random()*(window.innerWidth-60)+10,y:window.innerHeight-120}),   // bottom area
+  ()=>({x:10+Math.random()*60,y:window.innerHeight*.4}),                         // left side
+];
+
+function _getHour(){return new Date().getHours();}
+
+function _shouldShowBirds(){
+  if(D.birdsEnabled===false)return false;
+  const h=_getHour();
+  const s=D.birdSchedule||{morningStart:5,morningEnd:9,nightStart:22,nightEnd:3};
+  // Morning birds
+  if(h>=s.morningStart&&h<s.morningEnd)return 'morning';
+  // Night owl — handles overnight (e.g. 22-3)
+  if(s.nightStart>s.nightEnd){if(h>=s.nightStart||h<s.nightEnd)return 'night';}
+  else{if(h>=s.nightStart&&h<s.nightEnd)return 'night';}
+  return false;
+}
+
+function _createBird(mode){
+  const el=document.createElement('div');
+  const startX=Math.random()*(window.innerWidth-60)+10;
+  const startY=mode==='morning'?window.innerHeight-90:window.innerHeight*.3;
+  if(mode==='morning'){
+    el.className='bird-el';
+    el.textContent=BIRD_EMOJIS[Math.floor(Math.random()*BIRD_EMOJIS.length)];
+    el.style.left=startX+'px';
+    el.style.top=startY+'px';
+    el.title='Click me!';
+  } else {
+    el.className='owl-el';
+    el.textContent='🦉';
+    el.style.right='20px';
+    el.style.bottom='90px';
+  }
+  // Tap to fly away
+  el.addEventListener('click',()=>_flyBirdAway(el,mode));
+  el.addEventListener('touchstart',()=>_flyBirdAway(el,mode),{passive:true});
+  document.body.appendChild(el);
+  return el;
+}
+
+function _flyBirdAway(el,mode){
+  if(el._flying)return;
+  el._flying=true;
+  const fx=(Math.random()>.5?1:-1)*(80+Math.random()*100);
+  const fy=-(80+Math.random()*120);
+  el.style.setProperty('--fx',fx+'px');
+  el.style.setProperty('--fy',fy+'px');
+  el.classList.add('flying-away');
+  setTimeout(()=>{
+    el.remove();
+    _birds=_birds.filter(b=>b!==el);
+    // Return after 2-5 minutes randomly
+    const returnIn=(120+Math.random()*180)*1000;
+    const t=setTimeout(()=>{
+      if(_shouldShowBirds()===mode){
+        const newBird=_createBird(mode);
+        _birds.push(newBird);
+        _startBirdRoam(newBird,mode);
+      }
+    },returnIn);
+    _birdReturnTimers.push(t);
+  },600);
+}
+
+function _startBirdRoam(el,mode){
+  if(mode!=='morning')return; // Owl stays still
+  // Random roam every 4-8 seconds
+  function roam(){
+    if(!document.body.contains(el))return;
+    const r=Math.random();
+    let pos;
+    if(r<0.3){
+      // Jump to a nav button
+      pos=NAV_POSITIONS[Math.floor(Math.random()*NAV_POSITIONS.length)]();
+    } else if(r<0.5&&currentPage==='quests'){
+      // Go toward quest area (eat food!)
+      pos={x:20+Math.random()*80,y:window.innerHeight*.4+Math.random()*100};
+      // Peck animation
+      setTimeout(()=>{
+        el.style.transform='rotate(30deg)';
+        setTimeout(()=>{el.style.transform='';},400);
+      },1000);
+    } else {
+      pos=ROAM_POSITIONS[Math.floor(Math.random()*ROAM_POSITIONS.length)]();
+    }
+    el.style.left=pos.x+'px';
+    el.style.top=pos.y+'px';
+    el.classList.add('flapping');
+    // Soft bird chirp sound
+    try{
+      if(!_uiAC)_uiAC=new(window.AudioContext||window.webkitAudioContext)();
+      if(_uiAC.state==='suspended')_uiAC.resume();
+      if(D.birdsEnabled!==false){
+        const now2=_uiAC.currentTime;
+        const freqs=mode==='morning'?[1200,1600,1400,1800]:[600,500,400]; // birds chirp high, owl low
+        freqs.slice(0,2).forEach((f,i)=>{
+          const o=_uiAC.createOscillator(),g=_uiAC.createGain();
+          o.connect(g);g.connect(_uiAC.destination);
+          o.type='sine';o.frequency.setValueAtTime(f,now2+i*0.08);
+          o.frequency.exponentialRampToValueAtTime(f*0.8,now2+i*0.08+0.06);
+          g.gain.setValueAtTime(0.03,now2+i*0.08); // very soft — 0.03 volume
+          g.gain.exponentialRampToValueAtTime(0.001,now2+i*0.08+0.07);
+          o.start(now2+i*0.08);o.stop(now2+i*0.08+0.08);
+        });
+      }
+    }catch(e){}
+    setTimeout(()=>el.classList.remove('flapping'),600);
+    // Schedule next roam
+    const next=(4000+Math.random()*6000);
+    setTimeout(roam,next);
+  }
+  setTimeout(roam,3000+Math.random()*3000);
+}
+
+function _initBirds(){
+  // Clear existing birds
+  _birds.forEach(b=>{try{b.remove();}catch(e){}});
+  _birds=[];
+  _birdReturnTimers.forEach(t=>clearTimeout(t));
+  _birdReturnTimers=[];
+  if(_birdTimer)clearInterval(_birdTimer);
+
+  const mode=_shouldShowBirds();
+  if(!mode)return;
+
+  // Morning: 2 birds, Night: 1 owl
+  const count=mode==='morning'?2:1;
+  for(let i=0;i<count;i++){
+    setTimeout(()=>{
+      const bird=_createBird(mode);
+      _birds.push(bird);
+      _startBirdRoam(bird,mode);
+    },i*2000+1000);
+  }
+
+  // Re-check every hour if birds should show/hide
+  _birdTimer=setInterval(()=>{
+    const newMode=_shouldShowBirds();
+    if(!newMode&&_birds.length>0){
+      _birds.forEach(b=>{b.classList.add('flying-away');setTimeout(()=>{try{b.remove();}catch(e){}},600);});
+      _birds=[];
+    } else if(newMode&&_birds.length===0){
+      _initBirds();
+    }
+  },60000);
+}
+
+function saveBirdSchedule(){
+  const ms=parseInt((document.getElementById('bird-m-start')||{}).value||5);
+  const me=parseInt((document.getElementById('bird-m-end')||{}).value||9);
+  const ns=parseInt((document.getElementById('bird-n-start')||{}).value||22);
+  const ne=parseInt((document.getElementById('bird-n-end')||{}).value||3);
+  D.birdSchedule={morningStart:ms,morningEnd:me,nightStart:ns,nightEnd:ne};
+  save();_initBirds();
+  toast('Bird schedule saved ✓');
+}
+function toggleBirds(){
+  D.birdsEnabled=D.birdsEnabled===false?true:false;
+  save();
+  const btn=document.getElementById('birds-toggle-btn');
+  if(btn){btn.textContent=D.birdsEnabled===false?'OFF':'ON';btn.style.background=D.birdsEnabled===false?'var(--sd)':'var(--a)';btn.style.color=D.birdsEnabled===false?'var(--txt3)':'#fff';}
+  if(D.birdsEnabled===false){
+    _birds.forEach(b=>{b.classList.add('flying-away');setTimeout(()=>{try{b.remove();}catch(e){}},600);});
+    _birds=[];
+    if(_birdTimer)clearInterval(_birdTimer);
+    toast('Birds OFF');
+  } else {
+    _initBirds();
+    toast('Birds ON 🐦');
+  }
+}
+
 // ── INIT ──
 function init(){
   loadData();
@@ -5240,6 +5762,7 @@ function init(){
   if(D.appPIN){document.getElementById('pin-screen').classList.remove('hidden');}
   // Apply theme
   document.body.setAttribute('data-theme',D.theme||'light');
+  setTimeout(_applySceneBg,500);
   setTxt('sb-name',D.userName||'Karan Singh');
   updateTopBar();
   // Inject all pages into content div
@@ -5285,6 +5808,7 @@ function init(){
   // Notification scheduling (mobile)
   scheduleNotifs();
   _setupChargerEffect();
+  _initBirds();
   // Greeting
   console.log('%cCARBON × KARAN v7 ⚡','color:#6c63ff;font-size:24px;font-weight:900');
   console.log('%c© 2026 Karan Singh — Personal Life OS — Unauthorized use prohibited','color:#ef4444;font-size:11px');
@@ -5353,7 +5877,8 @@ function scheduleNotifs(){
 
     // Check each slot
     NOTIF_SLOTS.forEach(slot=>{
-      if(h===slot.h&&m===slot.m){
+      // Use >= so it fires even if browser was sleeping at exact minute
+      if((h===slot.h&&m>=slot.m&&m<=slot.m+2)){
         const slotKey=today+'_'+slot.key;
         if(D._notifsSent[slotKey])return; // Already sent this slot today
         const msg=_smartMsg();
